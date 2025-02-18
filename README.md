@@ -20,7 +20,7 @@ Format of item_category.txt: ItemID,CategoryID
 
 If you want to change to your own dataset. Format your dataset in a folder as in datasets/Beauty, and specify your folder name in --dataset argument.
 
-# Setup
+## Setup
 
 1. Create a virtual environment:
    ```bash
