@@ -19,7 +19,9 @@ if __name__ == '__main__':
     args = parse_args()
     early_stop = config(args)
 
-    if args.gpu >= 0 and torch.cuda.is_available():
+    if args.gpu >= 0:
+        if not torch.cuda.is_available():
+            raise Exception("CUDA is not available!")
         device = 'cuda:{}'.format(args.gpu)
     else:
         device = 'cpu'
