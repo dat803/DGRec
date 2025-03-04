@@ -14,9 +14,24 @@ class DGRecLayer(nn.Module):
         self.sigma = args.sigma
         self.gamma = args.gamma
 
-    def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0):
+    def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
+
+        # Gaussian Kernel:
         dists = th.cdist(X, X)
         sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
+
+        # Polynomial Kernel:
+        #mults = th.einsum("bpm,brm-> bpr", X,X)
+        #sims = th.pow(th.add(mults, coef0), degree)
+        #minval, maxval = th.aminmax(sims)
+        #sims = (sims-minval)/(maxval-minval) 
+        
+
+        # Hyperbolic tangent:
+        # kappa = 1
+        # delta = 1
+        # sims = th.tanh(kappa * th.dot(X, X) - delta)
+
         return sims
 
     def submodular_selection_feature(self, nodes):
@@ -29,10 +44,17 @@ class DGRecLayer(nn.Module):
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
 
         for i in range(self.k):
-            gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
+            #gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
+            gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
 
             selected = th.argmax(gain, dim = 1)
-            cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+            cache = th.minimum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+
+            #cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+            #cache = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
+
+            #mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
+            #cache = th.maximum(mean, cache)
 
             nodes_selected.append(selected)
 
