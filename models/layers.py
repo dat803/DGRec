@@ -16,13 +16,14 @@ class DGRecLayer(nn.Module):
 
     def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
 
-        # Gaussian Kernel:
-        dists = th.cdist(X, X)
-        sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
+        # Gaussian Kernel (original):
+        #dists = th.cdist(X, X)
+        #sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
 
         # Polynomial Kernel:
-        #mults = th.einsum("bpm,brm-> bpr", X,X)
-        #sims = th.pow(th.add(mults, coef0), degree)
+        mults = th.einsum("bpm,brm-> bpr", X,X)
+        sims = th.pow(th.add(mults, coef0), degree)
+
         #minval, maxval = th.aminmax(sims)
         #sims = (sims-minval)/(maxval-minval) 
         
@@ -44,19 +45,20 @@ class DGRecLayer(nn.Module):
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
 
         for i in range(self.k):
-            #gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
-            gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
+            #Original:
+            gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
 
             selected = th.argmax(gain, dim = 1)
-            cache = th.minimum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+            cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
 
-            #cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+            nodes_selected.append(selected)
+
+            #gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
+            #cache = th.minimum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
             #cache = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
-
             #mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
             #cache = th.maximum(mean, cache)
 
-            nodes_selected.append(selected)
 
         return th.stack(nodes_selected).t()
 
