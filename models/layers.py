@@ -13,25 +13,29 @@ class DGRecLayer(nn.Module):
         self.k = args.k
         self.sigma = args.sigma
         self.gamma = args.gamma
+        self.kernel = args.kernel
 
     def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
 
         # Gaussian Kernel (original):
-        #dists = th.cdist(X, X)
-        #sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
+        if self.kernel == 'gaussian':
+            dists = th.cdist(X, X)
+            sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
 
         # Polynomial Kernel:
-        mults = th.einsum("bpm,brm-> bpr", X,X)
-        sims = th.pow(th.add(mults, coef0), degree)
+        if self.kernel == 'poly':
+            mults = th.einsum("bpm,brm-> bpr", X,X)
+            sims = th.pow(th.add(mults, coef0), degree)
 
+        # Min max normalization for polynomial kernel
         #minval, maxval = th.aminmax(sims)
         #sims = (sims-minval)/(maxval-minval) 
         
 
         # Hyperbolic tangent:
-        # kappa = 1
-        # delta = 1
-        # sims = th.tanh(kappa * th.dot(X, X) - delta)
+        if self.kernel == 'tanh':
+            mults = th.einsum("bpm,brm-> bpr", X,X)
+            sims = th.tanh(th.add(mults*gamma,coef0))
 
         return sims
 
