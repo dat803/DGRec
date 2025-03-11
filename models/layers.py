@@ -14,6 +14,7 @@ class DGRecLayer(nn.Module):
         self.sigma = args.sigma
         self.gamma = args.gamma
         self.kernel = args.kernel
+        self.submodular_selection_option = args.submodular_selection_option
 
     def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
 
@@ -26,11 +27,6 @@ class DGRecLayer(nn.Module):
         if self.kernel == 'poly':
             mults = th.einsum("bpm,brm-> bpr", X,X)
             sims = th.pow(th.add(mults, coef0), degree)
-
-        # Min max normalization for polynomial kernel
-        #minval, maxval = th.aminmax(sims)
-        #sims = (sims-minval)/(maxval-minval) 
-        
 
         # Hyperbolic tangent:
         if self.kernel == 'tanh':
@@ -49,20 +45,25 @@ class DGRecLayer(nn.Module):
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
 
         for i in range(self.k):
-            #Original:
-            gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
-
-            selected = th.argmax(gain, dim = 1)
-            cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
-
+            option = self.submodular_selection_option
+            match option: 
+                case 'original':
+                    gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
+                    selected = th.argmax(gain, dim = 1)
+                    cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+                case 'mean':
+                    gain = th.sum(th.mean(sims, cache) - cache, dim = -1)
+                    selected = th.argmax(gain, dim = 1)
+                    cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
+                case 'sebastian':
+                    gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
+                    selected = th.argmax(gain, dim = 1)
+                    mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
+                    cache = th.maximum(mean, cache)
+                case x:
+                    print(f'Error: Uknown submodular_selection_option option "{x}"')
+                    exit(-1)
             nodes_selected.append(selected)
-
-            #gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
-            #cache = th.minimum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
-            #cache = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
-            #mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
-            #cache = th.maximum(mean, cache)
-
 
         return th.stack(nodes_selected).t()
 
