@@ -40,6 +40,10 @@ def parse_args():
                         help = 'whether make loss category balance')
     parser.add_argument('--beta_class', default = 0.9, type = float,
                         help = 'class re-balanced loss beta')
+    parser.add_argument('--kernel',default='gaussian',type=str, 
+                        help = 'kernel function for the similarity matrix: gaussian, poly, tanh')
+    parser.add_argument('--submodular_selection_option',default='original',type=str, 
+                        help = 'random bullshit we did to the submodular selection function: original, mean, sebastian')
 
     args = parser.parse_args()
     return args
