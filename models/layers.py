@@ -13,10 +13,25 @@ class DGRecLayer(nn.Module):
         self.k = args.k
         self.sigma = args.sigma
         self.gamma = args.gamma
+        self.kernel = args.kernel
 
-    def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0):
-        dists = th.cdist(X, X)
-        sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
+    def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
+
+        # Gaussian Kernel (original):
+        if self.kernel == 'gaussian':
+            dists = th.cdist(X, X)
+            sims = th.exp(-dists / (sigma * dists.mean(dim = -1).mean(dim = -1).reshape(-1, 1, 1)))
+
+        # Polynomial Kernel:
+        if self.kernel == 'poly':
+            mults = th.einsum("bpm,brm-> bpr", X,X)
+            sims = th.pow(th.add(mults, coef0), degree)
+
+        # Hyperbolic tangent:
+        if self.kernel == 'tanh':
+            mults = th.einsum("bpm,brm-> bpr", X,X)
+            sims = th.tanh(th.add(mults*gamma,coef0))
+
         return sims
 
     def submodular_selection_feature(self, nodes):
