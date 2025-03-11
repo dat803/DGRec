@@ -40,8 +40,6 @@ def parse_args():
                         help = 'whether make loss category balance')
     parser.add_argument('--beta_class', default = 0.9, type = float,
                         help = 'class re-balanced loss beta')
-    parser.add_argument('--kernel',default='gaussian',type=str,
-                        help = 'kernel function for the similarity matrix: gaussian, poly, tanh')
 
     args = parser.parse_args()
     return args
