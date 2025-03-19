@@ -60,7 +60,7 @@ class DGRecLayer(nn.Module):
                 mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
                 cache = th.maximum(mean, cache)
             else:
-                print(f'Error: Uknown submodular_selection_option option "{x}"')
+                print(f'Error: Uknown submodular_selection_option option "{option}"')
                 exit(-1)
             nodes_selected.append(selected)
 
