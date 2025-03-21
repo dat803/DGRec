@@ -42,11 +42,13 @@ class Tester(object):
 
     def test(self):
         results = {}
+        iud = {}
         h = self.model.get_embedding()
         count = 0
 
         for k in self.args.k_list:
             results[k] = {metric: 0.0 for metric in self.metrics}
+            iud[k] = 0
 
         for batch in tqdm(self.dataloader):
 
@@ -77,11 +79,17 @@ class Tester(object):
 
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
+                iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
 
         for k in self.args.k_list:
             for metric in self.metrics:
                 results[k][metric] = results[k][metric] / count
+            iud[k] = iud[k]/count
+            
         self.show_results(results)
+
+        for k in self.args.k_list:
+            logging.info('for top {}, IUD = {}'.format(k, iud[k]))        
 
     def show_results(self, results):
         for metric in self.metrics:
@@ -135,4 +143,16 @@ class Metrics(object):
         count = kwargs['count']
 
         return count.size
+    
+    @staticmethod
+    def IUD (items, **kwargs):
+        iuds = 0
+        k = kwargs['k']
+        number_users = items.shape[0]
+        for i in range(number_users):
+            same_recommendations = torch.isin(items, items[i]).sum(dim=1)
+            different_recommendations = torch.ones(number_users)*k-same_recommendations
+            difference_ratio = torch.div(different_recommendations,k)
+            iuds += (1/(number_users-1))*torch.sum(difference_ratio)
+        return iuds.item()
 

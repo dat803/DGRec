@@ -39,30 +39,25 @@ class DGRecLayer(nn.Module):
         device = nodes.mailbox['m'].device
         feature = nodes.mailbox['m']
         sims = self.similarity_matrix(feature, self.sigma, self.gamma)
-
         batch_num, neighbor_num, feature_size = feature.shape
         nodes_selected = []
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
 
         for i in range(self.k):
             option = self.submodular_selection_option
-            match option: 
-                case 'original':
+            if option == 'original':
                     gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
                     selected = th.argmax(gain, dim = 1)
                     cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
-                case 'mean':
+            if option == 'mean':
                     gain = th.sum(th.mean(sims, cache) - cache, dim = -1)
                     selected = th.argmax(gain, dim = 1)
                     cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
-                case 'sebastian':
+            if option == 'sebastian':
                     gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
                     selected = th.argmax(gain, dim = 1)
                     mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
                     cache = th.maximum(mean, cache)
-                case x:
-                    print(f'Error: Uknown submodular_selection_option option "{x}"')
-                    exit(-1)
             nodes_selected.append(selected)
 
         return th.stack(nodes_selected).t()
