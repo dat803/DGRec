@@ -147,20 +147,9 @@ class Metrics(object):
     
     @staticmethod
     def ILD (items, **kwargs):
-        k = kwargs['k']
-        embeddings = kwargs['k'].get_embedding()
-        print(f'embeddings.size: {embeddings.size}')
-
-        def dist(item1, item2):
-            return 1
-
-        
-        number_users = items.shape[0]
-        for user in range(number_users):
-            for item1 in range(k):
-                for item2 in range(k):
-                    ild += dist(items[user][item1], items[user][item2])
-        return ild
+        embeddings = kwargs['model'].get_embedding()['item'][items]
+        result = torch.sum(torch.mm(embeddings, embeddings.t())) / (embeddings.size()[0]**2)
+        return result
     
     @staticmethod
     def IUD (items, **kwargs):
