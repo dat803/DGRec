@@ -112,7 +112,8 @@ class Metrics(object):
         metrics_map = {
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
-            'coverage': Metrics.coverage
+            'coverage': Metrics.coverage,
+            'ILD': Metrics.ILD,
         }
 
         return metrics_map[metric]
@@ -145,6 +146,23 @@ class Metrics(object):
         return count.size
     
     @staticmethod
+    def ILD (items, **kwargs):
+        k = kwargs['k']
+        embeddings = kwargs['k'].get_embedding()
+        print(f'embeddings.size: {embeddings.size}')
+
+        def dist(item1, item2):
+            return 1
+
+        
+        number_users = items.shape[0]
+        for user in range(number_users):
+            for item1 in range(k):
+                for item2 in range(k):
+                    ild += dist(items[user][item1], items[user][item2])
+        return ild
+    
+    @staticmethod
     def IUD (items, **kwargs):
         iuds = 0
         k = kwargs['k']
@@ -155,4 +173,6 @@ class Metrics(object):
             difference_ratio = torch.div(different_recommendations,k)
             iuds += (1/(number_users-1))*torch.sum(difference_ratio)
         return iuds.item()
+    
+
 
