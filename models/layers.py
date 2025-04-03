@@ -32,12 +32,22 @@ class DGRecLayer(nn.Module):
         if self.kernel == 'tanh':
             mults = th.einsum("bpm,brm-> bpr", X,X)
             sims = th.tanh(th.add(mults*gamma,coef0))
+        
+        # Linear Kernel:
+        if self.kernel == 'linear':
+            sims = th.einsum("bpm,brm-> bpr", X,X)
+        
+        # Radial Kernel:
+        if self.kernel == 'radial':
+            dists = th.cdist(X, X)
+            sims = th.exp(-gamma * pow(dists, 2))
 
         return sims
 
     def submodular_selection_feature(self, nodes):
         device = nodes.mailbox['m'].device
         feature = nodes.mailbox['m']
+        popularity = nodes.mailbox['p']
         sims = self.similarity_matrix(feature, self.sigma, self.gamma)
         batch_num, neighbor_num, feature_size = feature.shape
         nodes_selected = []
@@ -46,15 +56,15 @@ class DGRecLayer(nn.Module):
         for i in range(self.k):
             option = self.submodular_selection_option 
             if option == 'original':
-                gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)
+                gain = th.sum(th.maximum(sims, cache) - cache, dim = -1)*popularity
                 selected = th.argmax(gain, dim = 1)
                 cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
             elif option == 'mean':
-                gain = th.sum(th.mean(sims, cache) - cache, dim = -1)
+                gain = th.sum(th.mean(sims, cache) - cache, dim = -1)*popularity
                 selected = th.argmax(gain, dim = 1)
                 cache = th.maximum(sims[th.arange(batch_num, device = device), selected].unsqueeze(1), cache)
             elif option == 'sebastian':
-                gain = th.sum(1 - th.minimum(sims, cache), dim=-1)
+                gain = th.sum(1 - th.minimum(sims, cache), dim=-1)*popularity
                 selected = th.argmax(gain, dim = 1)
                 mean = th.mean(sims[th.arange(batch_num, device = device), selected].unsqueeze(1))
                 cache = th.maximum(mean, cache)
@@ -80,7 +90,7 @@ class DGRecLayer(nn.Module):
         return {'h': mail}
 
     def category_aggregation(self, edges):
-        return {'c': edges.src['category'], 'm': edges.src['h']}
+        return {'c': edges.src['category'], 'm': edges.src['h'], 'p': edges.src['popularity']}
 
     def forward(self, graph, h, etype):
         with graph.local_scope():
