@@ -125,7 +125,9 @@ class Dataloader(object):
         }
         graph = dgl.heterograph(graph_data)
         category_tensor = torch.tensor(list(self.category_dic.values()), dtype = torch.long).unsqueeze(1)
+        popularity_tensor = torch.nn.functional.normalize(torch.bincount(train_data[:,1]).float(),dim=0)
         graph.ndata['category'] = {'item': category_tensor, 'user': torch.zeros(self.user_number, 1) - 1}
+        graph.ndata['popularity'] = {'item': popularity_tensor, 'user': torch.zeros(self.user_number,1)-1}
         dataset = torch.utils.data.TensorDataset(train_data)
         dataloader = DataLoader(dataset, batch_size = self.args.batch_size, shuffle = True, num_workers = 4)
 
