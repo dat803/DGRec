@@ -112,7 +112,8 @@ class Metrics(object):
         metrics_map = {
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
-            'coverage': Metrics.coverage
+            'coverage': Metrics.coverage,
+            'ILD': Metrics.ILD,
         }
 
         return metrics_map[metric]
@@ -143,6 +144,12 @@ class Metrics(object):
         count = kwargs['count']
 
         return count.size
+    
+    @staticmethod
+    def ILD (items, **kwargs):
+        embeddings = kwargs['model'].get_embedding()['item'][items]
+        result = torch.sum(torch.mm(embeddings, embeddings.t())) / (embeddings.size()[0]**2)
+        return result
     
     @staticmethod
     def IUD (items, **kwargs):

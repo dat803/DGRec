@@ -30,7 +30,7 @@ def parse_args():
                         help = 'neighbor number in each GNN aggregation')
     parser.add_argument('--neg_number', default = 4, type = int,
                         help = 'negative sampler number for each positive pair')
-    parser.add_argument('--metrics', default = ['recall', 'hit_ratio', 'coverage'])
+    parser.add_argument('--metrics', default = ['recall', 'hit_ratio', 'coverage', 'ILD'])
 
     parser.add_argument('--sigma', default = 1.0, type = float,
                         help = 'sigma for gaussian kernel')
