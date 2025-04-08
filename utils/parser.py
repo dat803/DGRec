@@ -1,5 +1,8 @@
 import argparse
 
+def str_to_str_list(input_string):
+    return [item for item in input_string.split(',')]
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default = 'TaoBao', type = str,
@@ -30,7 +33,7 @@ def parse_args():
                         help = 'neighbor number in each GNN aggregation')
     parser.add_argument('--neg_number', default = 4, type = int,
                         help = 'negative sampler number for each positive pair')
-    parser.add_argument('--metrics', default = ['recall', 'hit_ratio', 'coverage'])
+    parser.add_argument('--metrics', type = str_to_str_list , default = ['recall', 'hit_ratio', 'coverage'])
 
     parser.add_argument('--sigma', default = 1.0, type = float,
                         help = 'sigma for gaussian kernel')

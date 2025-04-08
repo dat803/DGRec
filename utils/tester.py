@@ -16,17 +16,17 @@ class Tester(object):
         self.test_dic = dataloader.test_dic
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
+        self.category_num = dataloader.category_num
 
-    def judge(self, users, items):
-
+    def judge(self, users, items, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
         # for ground truth test
         # items = self.ground_truth_filter(users, items)
-        stat = self.stat(items)
+        category_frequencies = self.category_frequencies(items)
         for metric in self.metrics:
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), count = stat[i], model = self.model)
+                results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num)
         return results
 
     def ground_truth_filter(self, users, items):
@@ -75,7 +75,7 @@ class Tester(object):
             recommended_items = recommended_items.cpu()
             for k in self.args.k_list:
 
-                results_batch = self.judge(users, recommended_items[:, :k])
+                results_batch = self.judge(users, recommended_items[:, :k], k = k)
 
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
@@ -89,16 +89,16 @@ class Tester(object):
         self.show_results(results)
 
         for k in self.args.k_list:
-            logging.info('for top {}, IUD = {}'.format(k, iud[k]))        
+            logging.info('for top {}, IUD = {}'.format(k, iud[k]))
 
     def show_results(self, results):
         for metric in self.metrics:
             for k in self.args.k_list:
                 logging.info('For top{}, metric {} = {}'.format(k, metric, results[k][metric]))
-
-    def stat(self, items):
-        stat = [np.unique(self.cate[item], return_counts=True)[1] for item in items]
-        return stat
+    
+    def category_frequencies(self, items):
+        recommended_categories = [np.unique(self.cate[item], return_counts=True) for item in items]
+        return recommended_categories
 
 
 class Metrics(object):
@@ -108,11 +108,11 @@ class Metrics(object):
 
     @staticmethod
     def get_metrics(metric):
-
         metrics_map = {
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
-            'coverage': Metrics.coverage
+            'coverage': Metrics.coverage,
+            'discount_coverage': Metrics.discount_coverage
         }
 
         return metrics_map[metric]
@@ -140,12 +140,23 @@ class Metrics(object):
     @staticmethod
     def coverage(items, **kwargs):
 
-        count = kwargs['count']
+        count = kwargs['category_coverage']
 
         return count.size
     
     @staticmethod
-    def IUD (items, **kwargs):
+    def discount_coverage(items, **kwargs):
+        alpha = 0.1
+        categories_covered = kwargs['category_coverage']
+        category_num = kwargs['category_num']
+        test_pos = kwargs['test_pos']
+        covered_truths = np.isin(categories_covered, test_pos).sum()
+        dcc = 1 / category_num * (covered_truths + alpha * (len(categories_covered) - covered_truths))
+
+        return dcc
+    
+    @staticmethod
+    def IUD(items, **kwargs):
         iuds = 0
         k = kwargs['k']
         number_users = items.shape[0]
