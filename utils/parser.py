@@ -34,7 +34,10 @@ def parse_args():
     parser.add_argument('--neg_number', default = 4, type = int,
                         help = 'negative sampler number for each positive pair')
     parser.add_argument('--metrics', type = str_to_str_list , default = ['recall', 'hit_ratio', 'coverage'])
-
+    parser.add_argument('--DCC_alpha', default = 0.1, type = float,
+                        help = 'alpha for discounted coverage metric')
+    parser.add_argument('--FDCC_alpha', default = 0.1, type = float,
+                        help = 'alpha for frequency discounted coverage metric')
     parser.add_argument('--sigma', default = 1.0, type = float,
                         help = 'sigma for gaussian kernel')
     parser.add_argument('--gamma', default = 2.0, type = float,
