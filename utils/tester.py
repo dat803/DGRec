@@ -18,6 +18,10 @@ class Tester(object):
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
         self.category_num = dataloader.category_num
+        self.runningIUD = False
+        if 'iud' in self.metrics:
+            self.runningIUD = True
+            self.metrics.remove('iud')
 
     def judge(self, users, items, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
@@ -43,13 +47,15 @@ class Tester(object):
 
     def test(self):
         results = {}
-        iud = {}
+        if self.runningIUD:
+            iud = {}
         h = self.model.get_embedding()
         count = 0
 
         for k in self.args.k_list:
             results[k] = {metric: 0.0 for metric in self.metrics}
-            iud[k] = 0
+            if self.runningIUD:
+                iud[k] = 0
 
         for batch in tqdm(self.dataloader):
 
@@ -80,17 +86,19 @@ class Tester(object):
 
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
-                iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
+                if self.runningIUD:
+                    iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
 
         for k in self.args.k_list:
             for metric in self.metrics:
                 results[k][metric] = results[k][metric] / count
-            iud[k] = iud[k]/count
+            if self.runningIUD:
+                iud[k] = iud[k]/count
             
         self.show_results(results)
-
-        for k in self.args.k_list:
-            logging.info('for top {}, IUD = {}'.format(k, iud[k]))
+        if self.runningIUD:
+            for k in self.args.k_list:
+                logging.info('for top {}, IUD = {}'.format(k, iud[k]))
 
     def show_results(self, results):
         for metric in self.metrics:
@@ -156,8 +164,6 @@ class Metrics(object):
         dcc = 1 / category_num * (covered_truths + alpha * (len(categories_covered) - covered_truths))
 
         return dcc
-    
-
     
     @staticmethod
     def frequency_discount_coverage(items, **kwargs):
