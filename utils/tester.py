@@ -80,7 +80,7 @@ class Tester(object):
 
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
-                iud[k] += Metrics.inter_user_diversity(recommended_items[:,:k], k = k)
+                iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
 
         for k in self.args.k_list:
             for metric in self.metrics:
@@ -161,7 +161,7 @@ class Metrics(object):
         return dcc
     
     @staticmethod
-    def inter_user_diversity(items, **kwargs):
+    def IUD(items, **kwargs):
         iuds = 0
         k = kwargs['k']
         number_users = items.shape[0]
