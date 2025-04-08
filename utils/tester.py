@@ -22,12 +22,11 @@ class Tester(object):
         results = {metric: 0.0 for metric in self.metrics}
         # for ground truth test
         # items = self.ground_truth_filter(users, items)
-        stat = self.stat(items)
-        categories_cover = self.categories_covered(items)
+        category_frequencies = self.category_frequencies(items)
         for metric in self.metrics:
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), count = stat[i], categories_covered = categories_cover[i], model = self.model, k = kwargs['k'], category_num = self.category_num)
+                results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num)
         return results
 
     def ground_truth_filter(self, users, items):
@@ -96,13 +95,9 @@ class Tester(object):
         for metric in self.metrics:
             for k in self.args.k_list:
                 logging.info('For top{}, metric {} = {}'.format(k, metric, results[k][metric]))
-
-    def stat(self, items):
-        stat = [np.unique(self.cate[item], return_counts=True)[1] for item in items]
-        return stat
     
-    def categories_covered(self, items):
-        recommended_categories = [np.unique(self.cate[item]) for item in items]
+    def category_frequencies(self, items):
+        recommended_categories = [np.unique(self.cate[item], return_counts=True) for item in items]
         return recommended_categories
 
 
@@ -145,14 +140,14 @@ class Metrics(object):
     @staticmethod
     def coverage(items, **kwargs):
 
-        count = kwargs['count']
+        count = kwargs['category_coverage']
 
         return count.size
     
     @staticmethod
     def discount_coverage(items, **kwargs):
         alpha = 0.1
-        categories_covered = kwargs['categories_covered']
+        categories_covered = kwargs['category_coverage']
         category_num = kwargs['category_num']
         test_pos = kwargs['test_pos']
         covered_truths = np.isin(categories_covered, test_pos).sum()
