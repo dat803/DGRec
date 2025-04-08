@@ -2,6 +2,7 @@ import pdb
 import logging
 import torch
 import numpy as np
+import math
 from tqdm import tqdm
 from scipy.stats import entropy
 
@@ -26,7 +27,7 @@ class Tester(object):
         for metric in self.metrics:
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num)
+                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num)
         return results
 
     def ground_truth_filter(self, users, items):
@@ -112,7 +113,8 @@ class Metrics(object):
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
             'coverage': Metrics.coverage,
-            'discount_coverage': Metrics.discount_coverage
+            'discount_coverage': Metrics.discount_coverage,
+            'frequency_discount_coverage': Metrics.frequency_discount_coverage
         }
 
         return metrics_map[metric]
@@ -149,11 +151,35 @@ class Metrics(object):
         alpha = 0.1
         categories_covered = kwargs['category_coverage']
         category_num = kwargs['category_num']
-        test_pos = kwargs['test_pos']
+        test_pos = kwargs['test_pos_categories']
         covered_truths = np.isin(categories_covered, test_pos).sum()
         dcc = 1 / category_num * (covered_truths + alpha * (len(categories_covered) - covered_truths))
 
         return dcc
+    
+
+    
+    @staticmethod
+    def frequency_discount_coverage(items, **kwargs):
+        fdcc = 0
+        alpha = 0.1 #hardcoded for now
+        category_num = kwargs['category_num'] #C_I
+        categories_covered = kwargs['category_coverage'] #C_R_u
+        ground_truth = np.unique(kwargs['test_pos_categories'], return_counts=True) # = [[categories],[how many times each category appears]]
+
+        intersect = np.intersect1d(categories_covered, ground_truth[0])
+
+        for c in intersect:
+            F_g_u = ground_truth[1][list(ground_truth[0]).index(c)] # we just get the amount of times category c appears in the ground truth
+            base = 2
+            if (F_g_u < base):
+                fdcc += 1
+            else:
+                fdcc += math.log(F_g_u, base)
+        
+        fdcc += alpha * (len(categories_covered) - len(intersect))
+        fdcc /= category_num
+        return fdcc
     
     @staticmethod
     def IUD(items, **kwargs):
