@@ -31,7 +31,7 @@ class Tester(object):
         for metric in self.metrics:
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num)
+                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha)
         return results
 
     def ground_truth_filter(self, users, items):
@@ -156,7 +156,7 @@ class Metrics(object):
     
     @staticmethod
     def discount_coverage(items, **kwargs):
-        alpha = 0.1
+        alpha = kwargs['DCC_alpha']
         categories_covered = kwargs['category_coverage']
         category_num = kwargs['category_num']
         test_pos = kwargs['test_pos_categories']
@@ -168,7 +168,7 @@ class Metrics(object):
     @staticmethod
     def frequency_discount_coverage(items, **kwargs):
         fdcc = 0
-        alpha = 0.1 #hardcoded for now
+        alpha = kwargs['FDCC_alpha']
         category_num = kwargs['category_num'] #C_I
         categories_covered = kwargs['category_coverage'] #C_R_u
         ground_truth = np.unique(kwargs['test_pos_categories'], return_counts=True) # = [[categories],[how many times each category appears]]
