@@ -122,7 +122,8 @@ class Metrics(object):
             'hit_ratio': Metrics.hr,
             'coverage': Metrics.coverage,
             'discount_coverage': Metrics.discount_coverage,
-            'frequency_discount_coverage': Metrics.frequency_discount_coverage
+            'frequency_discount_coverage': Metrics.frequency_discount_coverage,
+            'alpha_beta_ndcg': Metrics.alpha_beta_ndcg
         }
 
         return metrics_map[metric]
@@ -188,6 +189,26 @@ class Metrics(object):
         return fdcc
     
     @staticmethod
+    def alpha_beta_ndcg(items, **kwargs):
+        test_pos = kwargs['test_pos_categories'] # Ground truth
+        categories_covered = kwargs['category_coverage'] # recommended categories
+
+        print(test_pos)
+        
+        intersect = np.intersect1d(categories_covered, test_pos)
+
+        G[j] = 0
+        
+        CG[k] = sum(G)
+
+        DCG[k] = 0
+        for i in range(len(G)):
+            DCG[k] += G[i] /  math.log(1 + i)
+
+
+        return -1
+    
+    @staticmethod
     def IUD(items, **kwargs):
         iuds = 0
         k = kwargs['k']
@@ -198,4 +219,3 @@ class Metrics(object):
             difference_ratio = torch.div(different_recommendations,k)
             iuds += (1/(number_users-1))*torch.sum(difference_ratio)
         return iuds.item()
-
