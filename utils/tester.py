@@ -24,6 +24,9 @@ class Tester(object):
         # items = self.ground_truth_filter(users, items)
         stat = self.stat(items)
         for metric in self.metrics:
+            if metric == 'IUD':
+                continue
+
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
                 results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), count = stat[i], model = self.model)
@@ -42,13 +45,15 @@ class Tester(object):
 
     def test(self):
         results = {}
-        iud = {}
+        if 'IUD' in self.metrics:
+            iud = {}
         h = self.model.get_embedding()
         count = 0
 
         for k in self.args.k_list:
             results[k] = {metric: 0.0 for metric in self.metrics}
-            iud[k] = 0
+            if 'IUD' in self.metrics:
+                iud[k] = 0
 
         for batch in tqdm(self.dataloader):
 
@@ -79,17 +84,21 @@ class Tester(object):
 
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
-                iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
+                
+                if 'IUD' in self.metrics:
+                    iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
 
         for k in self.args.k_list:
             for metric in self.metrics:
                 results[k][metric] = results[k][metric] / count
-            iud[k] = iud[k]/count
+            if 'IUD' in self.metrics:
+                iud[k] = iud[k]/count
             
         self.show_results(results)
 
-        for k in self.args.k_list:
-            logging.info('for top {}, IUD = {}'.format(k, iud[k]))        
+        if 'IUD' in self.metrics:
+            for k in self.args.k_list:
+                logging.info('for top {}, IUD = {}'.format(k, iud[k]))        
 
     def show_results(self, results):
         for metric in self.metrics:

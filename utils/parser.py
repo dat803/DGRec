@@ -2,8 +2,10 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--model_path', default=None, type = str, help = "specify model_path if you want to test a model")
     parser.add_argument('--dataset', default = 'TaoBao', type = str,
                         help = 'Dataset to use')
+
     parser.add_argument('--seed', default = 2022, type = int,
                         help = 'seed for experiment')
     parser.add_argument('--embed_size', default = 32, type = int,
@@ -30,7 +32,7 @@ def parse_args():
                         help = 'neighbor number in each GNN aggregation')
     parser.add_argument('--neg_number', default = 4, type = int,
                         help = 'negative sampler number for each positive pair')
-    parser.add_argument('--metrics', default = ['recall', 'hit_ratio', 'coverage', 'ILD'])
+    parser.add_argument('--metrics', default = ['recall', 'hit_ratio', 'coverage'], help="recall, hit_radtio, coverage, IUD, DILAD, ILAD") 
 
     parser.add_argument('--sigma', default = 1.0, type = float,
                         help = 'sigma for gaussian kernel')
