@@ -15,6 +15,7 @@ class DGRecLayer(nn.Module):
         self.gamma = args.gamma
         self.kernel = args.kernel
         self.submodular_selection_option = args.submodular_selection_option
+        self.popularity = args.popularity
 
     def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
 
@@ -47,11 +48,15 @@ class DGRecLayer(nn.Module):
     def submodular_selection_feature(self, nodes):
         device = nodes.mailbox['m'].device
         feature = nodes.mailbox['m']
-        popularity = nodes.mailbox['p']
         sims = self.similarity_matrix(feature, self.sigma, self.gamma)
         batch_num, neighbor_num, feature_size = feature.shape
         nodes_selected = []
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
+
+        if self.popularity:
+            popularity = nodes.mailbox['p']
+        else:
+            popularity = 1
 
         for i in range(self.k):
             option = self.submodular_selection_option 
