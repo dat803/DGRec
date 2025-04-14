@@ -5,6 +5,7 @@ import numpy as np
 import math
 from tqdm import tqdm
 from scipy.stats import entropy
+from torch.nn.functional import normalize
 
 class Tester(object):
     def __init__(self, args, model, dataloader):
@@ -126,7 +127,8 @@ class Metrics(object):
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
             'coverage': Metrics.coverage,
-            'ILD': Metrics.ILD,
+            'ILAD': Metrics.ILAD,
+            'DILAD': Metrics.DILAD,
         }
 
         return metrics_map[metric]
@@ -159,12 +161,6 @@ class Metrics(object):
         return count.size
     
     @staticmethod
-    def ILD (items, **kwargs):
-        embeddings = kwargs['model'].get_embedding()['item'][items]
-        result = torch.sum(torch.mm(embeddings, embeddings.t())) / (embeddings.size()[0]**2)
-        return result
-    
-    @staticmethod
     def IUD (items, **kwargs):
         iuds = 0
         k = kwargs['k']
@@ -175,4 +171,29 @@ class Metrics(object):
             difference_ratio = torch.div(different_recommendations,k)
             iuds += (1/(number_users-1))*torch.sum(difference_ratio)
         return iuds.item()
+    
+    @staticmethod
+    def ILAD(items, model, **kwargs):
+        embeddings = normalize(model.get_embedding()['item'][items])
 
+        distance = 1 - torch.mm(embeddings, embeddings.t())
+
+        result = torch.sum(distance) / (embeddings.size()[0]**2)
+        return result
+    
+    @staticmethod
+    def DILAD(items, model, test_pos, **kwargs):
+        embeddings = normalize(model.get_embedding()['item'][items])
+
+        distance = 1 - torch.mm(embeddings, embeddings.t())
+
+        beta = 0.1
+        weights = torch.full((1, len(items)), beta, device='cuda')
+
+        for idx, item in enumerate(items):
+            if item in test_pos:
+                weights[0][idx] = 1
+
+        result = (1 / (len(embeddings) ** 2)) * torch.mm(torch.mm(weights, distance), weights.T)
+        
+        return result.item()
