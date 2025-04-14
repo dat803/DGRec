@@ -2,6 +2,7 @@ import pdb
 import logging
 import torch
 import numpy as np
+import math
 from tqdm import tqdm
 from scipy.stats import entropy
 
@@ -16,20 +17,24 @@ class Tester(object):
         self.test_dic = dataloader.test_dic
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
+        self.category_num = dataloader.category_num
+        self.runningIUD = False
+        if self.runningIUD:
+            self.runningIUD = True
+            self.metrics.remove('IUD')
 
-    def judge(self, users, items):
-
+    def judge(self, users, items, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
         # for ground truth test
         # items = self.ground_truth_filter(users, items)
-        stat = self.stat(items)
+        category_frequencies = self.category_frequencies(items)
         for metric in self.metrics:
             if metric == 'IUD':
                 continue
 
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), count = stat[i], model = self.model)
+                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha)
         return results
 
     def ground_truth_filter(self, users, items):
@@ -45,14 +50,14 @@ class Tester(object):
 
     def test(self):
         results = {}
-        if 'IUD' in self.metrics:
+        if self.runningIUD:
             iud = {}
         h = self.model.get_embedding()
         count = 0
 
         for k in self.args.k_list:
             results[k] = {metric: 0.0 for metric in self.metrics}
-            if 'IUD' in self.metrics:
+            if self.runningIUD:
                 iud[k] = 0
 
         for batch in tqdm(self.dataloader):
@@ -80,23 +85,23 @@ class Tester(object):
             recommended_items = recommended_items.cpu()
             for k in self.args.k_list:
 
-                results_batch = self.judge(users, recommended_items[:, :k])
+                results_batch = self.judge(users, recommended_items[:, :k], k = k)
 
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
                 
-                if 'IUD' in self.metrics:
+                if self.runningIUD:
                     iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
 
         for k in self.args.k_list:
             for metric in self.metrics:
                 results[k][metric] = results[k][metric] / count
-            if 'IUD' in self.metrics:
+            if self.runningIUD:
                 iud[k] = iud[k]/count
             
         self.show_results(results)
 
-        if 'IUD' in self.metrics:
+        if self.runningIUD:
             for k in self.args.k_list:
                 logging.info('for top {}, IUD = {}'.format(k, iud[k]))        
 
@@ -104,10 +109,10 @@ class Tester(object):
         for metric in self.metrics:
             for k in self.args.k_list:
                 logging.info('For top{}, metric {} = {}'.format(k, metric, results[k][metric]))
-
-    def stat(self, items):
-        stat = [np.unique(self.cate[item], return_counts=True)[1] for item in items]
-        return stat
+    
+    def category_frequencies(self, items):
+        recommended_categories = [np.unique(self.cate[item], return_counts=True) for item in items]
+        return recommended_categories
 
 
 class Metrics(object):
@@ -117,7 +122,6 @@ class Metrics(object):
 
     @staticmethod
     def get_metrics(metric):
-
         metrics_map = {
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
@@ -150,7 +154,7 @@ class Metrics(object):
     @staticmethod
     def coverage(items, **kwargs):
 
-        count = kwargs['count']
+        count = kwargs['category_coverage']
 
         return count.size
     
