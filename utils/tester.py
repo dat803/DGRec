@@ -127,6 +127,8 @@ class Metrics(object):
             'recall': Metrics.recall,
             'hit_ratio': Metrics.hr,
             'coverage': Metrics.coverage,
+            'DCC': Metrics.DCC,
+            'FDCC': Metrics.FDCC,
             'ILAD': Metrics.ILAD,
             'DILAD': Metrics.DILAD,
         }
@@ -159,6 +161,39 @@ class Metrics(object):
         count = kwargs['category_coverage']
 
         return count.size
+    
+    @staticmethod
+    def DCC(items, **kwargs):
+        alpha = kwargs['DCC_alpha']
+        categories_covered = kwargs['category_coverage']
+        category_num = kwargs['category_num']
+        test_pos = kwargs['test_pos_categories']
+        covered_truths = np.isin(categories_covered, test_pos).sum()
+        dcc = 1 / category_num * (covered_truths + alpha * (len(categories_covered) - covered_truths))
+
+        return dcc
+    
+    @staticmethod
+    def FDCC(items, **kwargs):
+        fdcc = 0
+        alpha = kwargs['FDCC_alpha']
+        category_num = kwargs['category_num'] #C_I
+        categories_covered = kwargs['category_coverage'] #C_R_u
+        ground_truth = np.unique(kwargs['test_pos_categories'], return_counts=True) # = [[categories],[how many times each category appears]]
+
+        intersect = np.intersect1d(categories_covered, ground_truth[0])
+
+        for c in intersect:
+            F_g_u = ground_truth[1][list(ground_truth[0]).index(c)] # we just get the amount of times category c appears in the ground truth
+            base = 2
+            if (F_g_u < base):
+                fdcc += 1
+            else:
+                fdcc += math.log(F_g_u, base)
+        
+        fdcc += alpha * (len(categories_covered) - len(intersect))
+        fdcc /= category_num
+        return fdcc
     
     @staticmethod
     def IUD (items, **kwargs):
