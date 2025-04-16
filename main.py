@@ -17,7 +17,6 @@ from models.sampler import NegativeSampler
 
 if __name__ == '__main__':
     args = parse_args()
-    early_stop = config(args)
 
     if args.gpu >= 0:
         if not torch.cuda.is_available():
@@ -37,8 +36,11 @@ if __name__ == '__main__':
     model = model.to(device)
 
     if (args.model_path):
-        print("Skipping traning!!!")
+        print("Skipping training!!!")
     else:
+        early_stop = config(args)
+        model_path = early_stop.save_path
+
         opt = torch.optim.Adam(model.parameters(), lr = args.lr, weight_decay = args.weight_decay)
         early_stop(99999.99, model)
 
@@ -79,7 +81,6 @@ if __name__ == '__main__':
                 weight = sample_weight[items]
                 loss_val = (weight * loss.squeeze(1)).mean()
 
-
             early_stop(loss_val, model)
 
             if torch.isnan(loss_val) == True:
@@ -88,7 +89,6 @@ if __name__ == '__main__':
             if early_stop.early_stop:
                 break
 
-    model_path = early_stop.save_path
     if (args.model_path):
         logging.info("Using already trained model")
         model_path = args.model_path

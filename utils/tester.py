@@ -28,14 +28,24 @@ class Tester(object):
         results = {metric: 0.0 for metric in self.metrics}
         # for ground truth test
         # items = self.ground_truth_filter(users, items)
+        both_ilad_dilad = "ILAD" in self.metrics and "DILAD" in self.metrics
+
         category_frequencies = self.category_frequencies(items)
         for metric in self.metrics:
-            if metric == 'IUD':
+            if metric == 'IUD' or metric == 'DILAD' or metric == 'ILAD' and both_ilad_dilad:
                 continue
 
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
                 results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha)
+        
+        if both_ilad_dilad:
+            for i in range(len(items)):
+                f = Metrics.get_metrics("ILAD_DILAD")
+                ilad, dilad = f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha)
+                results["ILAD"] += ilad
+                results["DILAD"] += dilad
+
         return results
 
     def ground_truth_filter(self, users, items):
@@ -129,6 +139,7 @@ class Metrics(object):
             'coverage': Metrics.coverage,
             'ILAD': Metrics.ILAD,
             'DILAD': Metrics.DILAD,
+            'ILAD_DILAD': Metrics.ILAD_DILAD,
         }
 
         return metrics_map[metric]
@@ -173,27 +184,53 @@ class Metrics(object):
         return iuds.item()
     
     @staticmethod
-    def ILAD(items, model, **kwargs):
+    def ILAD(items, model, k, **kwargs):
         embeddings = normalize(model.get_embedding()['item'][items])
 
         distance = 1 - torch.mm(embeddings, embeddings.t())
 
-        result = torch.sum(distance) / (embeddings.size()[0]**2)
-        return result
+        # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
+        embeddings_size_squared = k * (k - 1)
+        
+        ilad = torch.sum(distance).item() / embeddings_size_squared
+        return ilad
     
     @staticmethod
-    def DILAD(items, model, test_pos, **kwargs):
+    def DILAD(items, model, k, test_pos, **kwargs):
         embeddings = normalize(model.get_embedding()['item'][items])
 
         distance = 1 - torch.mm(embeddings, embeddings.t())
 
         beta = 0.1
-        weights = torch.full((1, len(items)), beta, device='cuda')
+        weights = torch.full((1, k), beta, device='cuda')
 
         for idx, item in enumerate(items):
             if item in test_pos:
                 weights[0][idx] = 1
 
-        result = (1 / (len(embeddings) ** 2)) * torch.mm(torch.mm(weights, distance), weights.T)
+        # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
+        embeddings_size_squared = k * (k - 1)
+
+        dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
         
-        return result.item()
+        return dilad
+    
+    @staticmethod
+    def ILAD_DILAD(items, model, k, test_pos=None, beta=0.1, **kwargs):
+        embeddings = normalize(model.get_embedding()['item'][items])
+
+        distance = 1 - torch.mm(embeddings, embeddings.t())
+
+        weights = torch.full((1, k), beta, device='cuda')
+
+        for idx, item in enumerate(items):
+            if item in test_pos:
+                weights[0][idx] = 1
+
+        # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
+        embeddings_size_squared = k * (k - 1)
+
+        ilad = torch.sum(distance).item() / embeddings_size_squared
+        dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
+
+        return ilad, dilad

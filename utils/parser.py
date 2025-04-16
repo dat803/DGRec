@@ -35,7 +35,7 @@ def parse_args():
                         help = 'neighbor number in each GNN aggregation')
     parser.add_argument('--neg_number', default = 4, type = int,
                         help = 'negative sampler number for each positive pair')
-    parser.add_argument('--metrics', type = str_to_str_list, default = ['recall', 'hit_ratio', 'coverage'], help="recall, hit_radtio, coverage, IUD, DILAD, ILAD") 
+    parser.add_argument('--metrics', type = str_to_str_list, default = ['recall', 'hit_ratio', 'coverage'], help="recall, hit_ratio, coverage, IUD, DILAD, ILAD, ILAD_DILAD") 
     parser.add_argument('--DCC_alpha', default = 0.1, type = float,
                         help = 'alpha for discounted coverage metric')
     parser.add_argument('--FDCC_alpha', default = 0.1, type = float,
