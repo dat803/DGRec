@@ -35,7 +35,11 @@ class Tester(object):
 
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha)
+                item_cates = [(item, self.cate[item]) for item in items[i, :kwargs['k']]]
+                test_pos_categories = [self.cate[item] for item in self.test_dic[users[i]]]
+                good_alpha = Metrics.isAlphaGood(item_cates, kwargs['k'], category_frequencies[i], test_pos_categories)
+                print(good_alpha)
+                results[metric] += f(items[i], test_pos_categories = test_pos_categories, test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha)
         return results
 
     def ground_truth_filter(self, users, items):
@@ -122,6 +126,31 @@ class Metrics(object):
         pass
 
     @staticmethod
+    def choice(n, k):
+        return math.factorial(n) / math.factorial(n - k)
+    
+    @staticmethod
+    def precision(category_frequencies, ground_truth):
+        truePositives = 0
+        for i in range(len(category_frequencies[0])):
+            if category_frequencies[0, i] in ground_truth:
+                truePositives += category_frequencies[1, i]
+        bottom = len(ground_truth) # maybe bottom should be the total length of recommended items instead
+        precision = truePositives / bottom
+        return precision
+    
+    @staticmethod
+    def isAlphaGood(item_cates, k, category_frequencies, ground_truth_categories):
+        #category_frequencies is a tuple list [(categories, times)] for a user
+        #ground_truth_categories are the categories that are "correct"
+        for i in range(1, k):
+            p = Metrics.precision(category_frequencies, ground_truth_categories)
+            choiceValue = Metrics.choice(i, k) * math.pow(p, i) * math.pow((1 - p), (k - i))
+            for j in range(i - 1):
+                
+        return alpha 
+
+    @staticmethod
     def get_metrics(metric):
         metrics_map = {
             'recall': Metrics.recall,
@@ -163,6 +192,7 @@ class Metrics(object):
         return count.size
     
     @staticmethod
+    # Discounted Category Coverage
     def DCC(items, **kwargs):
         alpha = kwargs['DCC_alpha']
         categories_covered = kwargs['category_coverage']
@@ -174,6 +204,7 @@ class Metrics(object):
         return dcc
     
     @staticmethod
+    # Frequency aware Discounted Category Coverage
     def FDCC(items, **kwargs):
         fdcc = 0
         alpha = kwargs['FDCC_alpha']
