@@ -56,7 +56,10 @@ def setup_seed(seed):
 def config(args):
     setup_seed(args.seed)
 
-    path = f"{args.dataset}_model_{args.model}_lr_{args.lr}_embed_size_{args.embed_size}_batch_size_{args.batch_size}_weight_decay_{args.weight_decay}_layers_{args.layers}_neg_number_{args.neg_number}_seed_{args.seed}_k_{args.k}_sigma_{args.sigma}_gamma_{args.gamma}_beta_class_{args.beta_class}_kernel_function_{args.kernel}_submodular_function_{args.submodular_selection_option}_popularity_{args.popularity}"
+    if (args.model_path):
+        path = os.path.basename(args.model_path).split('/')[-1]
+    else:
+        path = f"{args.dataset}_model_{args.model}_lr_{args.lr}_embed_size_{args.embed_size}_batch_size_{args.batch_size}_weight_decay_{args.weight_decay}_layers_{args.layers}_neg_number_{args.neg_number}_seed_{args.seed}_k_{args.k}_sigma_{args.sigma}_gamma_{args.gamma}_beta_class_{args.beta_class}_kernel_function_{args.kernel}_submodular_function_{args.submodular_selection_option}_popularity_{args.popularity}"
     if os.path.exists('./logs/' + path + '.log'):
         os.remove('./logs/' + path + '.log')
 

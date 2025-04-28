@@ -104,4 +104,3 @@ class DGRec(BaseGraphModel):
         item_embed = self.layer_attention(item_embed, self.W, self.a)
         h = {'user': user_embed, 'item': item_embed}
         return h
-

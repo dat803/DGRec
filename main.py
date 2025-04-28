@@ -17,6 +17,7 @@ from models.sampler import NegativeSampler
 
 if __name__ == '__main__':
     args = parse_args()
+    early_stop = config(args)
 
     if args.gpu >= 0:
         if not torch.cuda.is_available():
@@ -38,7 +39,6 @@ if __name__ == '__main__':
     if (args.model_path):
         print("Skipping training!!!")
     else:
-        early_stop = config(args)
         model_path = early_stop.save_path
 
         opt = torch.optim.Adam(model.parameters(), lr = args.lr, weight_decay = args.weight_decay)
