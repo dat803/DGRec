@@ -1,11 +1,13 @@
 import pdb
 import logging
+import pickle
 import torch
 import numpy as np
 import math
 from tqdm import tqdm
 from scipy.stats import entropy
 from torch.nn.functional import normalize
+import os
 
 class Tester(object):
     def __init__(self, args, model, dataloader):
@@ -60,61 +62,81 @@ class Tester(object):
         return res
 
     def test(self):
-        results = {}
-        if self.runningIUD:
-            iud = {}
-        h = self.model.get_embedding()
-        count = 0
+        checkpoint_dir = self.args.output + "/checkpoints"
+        os.makedirs(checkpoint_dir, exist_ok=True)
 
-        for k in self.args.k_list:
-            results[k] = {metric: 0.0 for metric in self.metrics}
+        # Try loading the latest checkpoint
+        if os.listdir(checkpoint_dir):
+            latest_checkpoint = max([int(file.split('.')[0]) for file in os.listdir(checkpoint_dir) if file.endswith('.pkl')])
+            start_batch = latest_checkpoint + 1
+
+            with open(os.path.join(checkpoint_dir, f'{latest_checkpoint}.pkl'), 'rb') as f:
+                checkpoint_data = pickle.load(f)
+            results = checkpoint_data['results']
+            count = checkpoint_data['count']
             if self.runningIUD:
-                iud[k] = 0
+                iud = checkpoint_data['iud']
+        else:
+            start_batch = 0
+            results = {}
+            count = 0
+            if self.runningIUD:
+                iud = {}
 
-        for batch in tqdm(self.dataloader):
+            for k in self.args.k_list:
+                results[k] = {metric: 0.0 for metric in self.metrics}
+                if self.runningIUD:
+                    iud[k] = 0
+
+        h = self.model.get_embedding()
+
+        for batch_idx, batch in enumerate(tqdm(self.dataloader)):
+
+            if batch_idx < start_batch:
+                continue  # Skip already processed batches
 
             users = batch[0]
             count += users.shape[0]
-            # count += len(users)
-            scores = self.model.get_score(h, users)
 
-            # test ground truth
-            # scores_ls = []
-            # num_item = scores.shape[1]
-            # for user in users:
-            #     score_user = torch.zeros(num_item, device = scores.device)
-            #     gt = torch.tensor(self.test_dic[user], device = scores.device)
-            #     score_user[gt] = 1.0
-            #     scores_ls.append(score_user)
-            # scores = torch.stack(scores_ls)
+            scores = self.model.get_score(h, users)
 
             users = users.tolist()
             mask = torch.tensor(self.history_csr[users].todense(), device = scores.device).bool()
             scores[mask] = -float('inf')
 
-            _, recommended_items = torch.topk(scores, k = max(self.args.k_list))
-            recommended_items = recommended_items.cpu()
+            _, recommended_items = torch.topk(scores, k=max(self.args.k_list))
+            
+            if (self.args.gpu < 0):
+                recommended_items = recommended_items.cpu()
+
             for k in self.args.k_list:
-
-                results_batch = self.judge(users, recommended_items[:, :k], k = k)
-
+                results_batch = self.judge(users, recommended_items[:, :k], k=k)
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
-                
                 if self.runningIUD:
-                    iud[k] += Metrics.IUD(recommended_items[:,:k], k = k)
+                    iud[k] += Metrics.IUD(recommended_items[:, :k], k=k)
+
+            # Save checkpoint
+            checkpoint_data = {
+                'results': results,
+                'count': count,
+                'iud': iud if self.runningIUD else None
+            }
+            with open(os.path.join(checkpoint_dir, f'{batch_idx}.pkl'), 'wb') as f:
+                pickle.dump(checkpoint_data, f)
 
         for k in self.args.k_list:
             for metric in self.metrics:
-                results[k][metric] = results[k][metric] / count
+                results[k][metric] /= count
             if self.runningIUD:
-                iud[k] = iud[k]/count
-            
+                iud[k] /= count
+
         self.show_results(results)
 
         if self.runningIUD:
             for k in self.args.k_list:
-                logging.info('for top {}, IUD = {}'.format(k, iud[k]))        
+                logging.info('for top {}, IUD = {}'.format(k, iud[k]))
+     
 
     def show_results(self, results):
         for metric in self.metrics:

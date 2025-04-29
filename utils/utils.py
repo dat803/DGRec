@@ -60,16 +60,25 @@ def config(args):
         path = os.path.basename(args.model_path).split('/')[-1]
     else:
         path = f"{args.dataset}_model_{args.model}_lr_{args.lr}_embed_size_{args.embed_size}_batch_size_{args.batch_size}_weight_decay_{args.weight_decay}_layers_{args.layers}_neg_number_{args.neg_number}_seed_{args.seed}_k_{args.k}_sigma_{args.sigma}_gamma_{args.gamma}_beta_class_{args.beta_class}_kernel_function_{args.kernel}_submodular_function_{args.submodular_selection_option}_popularity_{args.popularity}"
-    if os.path.exists('./logs/' + path + '.log'):
-        os.remove('./logs/' + path + '.log')
+    
+    if (args.output and args.model_name):
+        os.makedirs(args.output, exist_ok=True)
+        output_log_file_path = args.output + "/" + args.model_name + '.log'
+        save_path = args.output + "/" + args.model_name + '.pt'
+    else:
+        output_log_file_path = './logs/' + path + '.log'
+        save_path = './best_models/' + path + '.pt'
+    
+    if os.path.exists(output_log_file_path):
+        os.remove(output_log_file_path)
 
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s  %(levelname)s %(message)s',
                         datefmt='%a, %d %b %Y %H:%M:%S',
-                        filename='./logs/' + path + '.log')
+                        filename=output_log_file_path)
     logger = logging.getLogger()
     stream_handler = logging.StreamHandler()
     logger.addHandler(stream_handler)
-    early_stop = EarlyStoppingCriterion(patience = args.patience, save_path = './best_models/' + path + '.pt')
+    early_stop = EarlyStoppingCriterion(patience = args.patience, save_path = save_path)
     return early_stop
 
