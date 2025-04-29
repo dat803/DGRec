@@ -104,10 +104,8 @@ class Tester(object):
             mask = torch.tensor(self.history_csr[users].todense(), device = scores.device).bool()
             scores[mask] = -float('inf')
 
-            _, recommended_items = torch.topk(scores, k=max(self.args.k_list))
-            
-            if (self.args.gpu < 0):
-                recommended_items = recommended_items.cpu()
+            _, recommended_items = torch.topk(scores, k=max(self.args.k_list))            
+            recommended_items = recommended_items.cpu()
 
             for k in self.args.k_list:
                 results_batch = self.judge(users, recommended_items[:, :k], k=k)
