@@ -7,6 +7,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default=None, type = str)
     parser.add_argument('--output', default=None, type = str, help="Path to directory for logs and checkpoint")
+    parser.add_argument('--no_checkpoints', default=False, type = bool, help="Enable checkpoints")
     parser.add_argument('--model_path', default=None, type = str, help = "specify model_path if you want to test a model")
     parser.add_argument('--dataset', default = 'TaoBao', type = str,
                         help = 'Dataset to use')

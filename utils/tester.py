@@ -21,10 +21,7 @@ class Tester(object):
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
         self.category_num = dataloader.category_num
-        self.runningIUD = False
-        if self.runningIUD:
-            self.runningIUD = True
-            self.metrics.remove('IUD')
+        self.runningIUD = "IUD" in args.metrics
 
     def judge(self, users, items, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
@@ -62,11 +59,12 @@ class Tester(object):
         return res
 
     def test(self):
-        checkpoint_dir = self.args.output + "/checkpoints"
-        os.makedirs(checkpoint_dir, exist_ok=True)
+        if not self.args.no_checkpoints:
+            checkpoint_dir = self.args.output + "/checkpoints"
+            os.makedirs(checkpoint_dir, exist_ok=True)
 
         # Try loading the latest checkpoint
-        if os.listdir(checkpoint_dir):
+        if not self.args.no_checkpoints and os.listdir(checkpoint_dir):
             latest_checkpoint = max([int(file.split('.')[0]) for file in os.listdir(checkpoint_dir) if file.endswith('.pkl')])
             start_batch = latest_checkpoint + 1
 
@@ -112,16 +110,19 @@ class Tester(object):
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
                 if self.runningIUD:
+                    print("IUD")
                     iud[k] += Metrics.IUD(recommended_items[:, :k], k=k)
 
-            # Save checkpoint
-            checkpoint_data = {
-                'results': results,
-                'count': count,
-                'iud': iud if self.runningIUD else None
-            }
-            with open(os.path.join(checkpoint_dir, f'{batch_idx}.pkl'), 'wb') as f:
-                pickle.dump(checkpoint_data, f)
+
+            if not self.args.no_checkpoints:
+                # Save checkpoint
+                checkpoint_data = {
+                    'results': results,
+                    'count': count,
+                    'iud': iud if self.runningIUD else None
+                }
+                with open(os.path.join(checkpoint_dir, f'{batch_idx}.pkl'), 'wb') as f:
+                    pickle.dump(checkpoint_data, f)
 
         for k in self.args.k_list:
             for metric in self.metrics:
@@ -227,7 +228,7 @@ class Metrics(object):
         return fdcc
     
     @staticmethod
-    def IUD (items, **kwargs):
+    def IUD(items, **kwargs):
         iuds = 0
         k = kwargs['k']
         number_users = items.shape[0]
