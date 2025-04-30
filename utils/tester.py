@@ -37,7 +37,7 @@ class Tester(object):
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
                 results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
-        
+
         if both_ilad_dilad:
             all_items_embs = self.model.get_embedding()['item'][items]
             all_embeddings = normalize(all_items_embs, dim=2)
@@ -46,20 +46,19 @@ class Tester(object):
 
             beta = self.args.DILAD_beta
             num_users = len(users)
-            user_test_items_set = [set(self.test_dic[user]) for user in users] 
 
             weights = torch.full((num_users, len(items[0])), beta, device=self.args.device)
 
-            for idx, (user, item_list) in enumerate(zip(users, items)):
-                user_mask = torch.tensor([1 if item in user_test_items_set[idx] else beta for item in item_list],
-                                        device=self.args.device)
-                weights[idx] = user_mask
+            for idx, user in enumerate(users):
+                test_items = self.test_dic[user]
+                user_items = items[idx]
+                mask = torch.tensor([1 if item in test_items else beta for item in user_items], device=self.args.device)
+                weights[idx] = mask
 
             k = len(items[0])
             embeddings_size_squared = k * (k - 1)
 
             ilad_all_users = torch.einsum('uij -> u', all_distances) / embeddings_size_squared
-
             dilad_all_users = torch.einsum('uij,ui,uj', all_distances, weights, weights) / embeddings_size_squared
 
             #dilad_all_users = torch.bmm(weights.unsqueeze(1), torch.bmm(all_distances, weights.unsqueeze(2)))  # Shape: (num_users, 1, 1)
@@ -125,7 +124,7 @@ class Tester(object):
             mask = torch.tensor(self.history_csr[users].todense(), device = scores.device).bool()
             scores[mask] = -float('inf')
 
-            _, recommended_items = torch.topk(scores, k=max(self.args.k_list))            
+            _, recommended_items = torch.topk(scores, k=max(self.args.k_list))
             recommended_items = recommended_items.cpu()
 
             for k in self.args.k_list:
@@ -158,13 +157,13 @@ class Tester(object):
         if self.runningIUD:
             for k in self.args.k_list:
                 logging.info('for top {}, IUD = {}'.format(k, iud[k]))
-     
+
 
     def show_results(self, results):
         for metric in self.metrics:
             for k in self.args.k_list:
                 logging.info('For top{}, metric {} = {}'.format(k, metric, results[k][metric]))
-    
+
     def category_frequencies(self, items):
         recommended_categories = [np.unique(self.cate[item], return_counts=True) for item in items]
         return recommended_categories
@@ -216,7 +215,7 @@ class Metrics(object):
         count = kwargs['category_coverage']
 
         return count.size
-    
+
     @staticmethod
     def DCC(items, **kwargs):
         alpha = kwargs['DCC_alpha']
@@ -227,7 +226,7 @@ class Metrics(object):
         dcc = 1 / category_num * (covered_truths + alpha * (len(categories_covered) - covered_truths))
 
         return dcc
-    
+
     @staticmethod
     def FDCC(items, **kwargs):
         fdcc = 0
@@ -245,11 +244,11 @@ class Metrics(object):
                 fdcc += 1
             else:
                 fdcc += math.log(F_g_u, base)
-        
+
         fdcc += alpha * (len(categories_covered) - len(intersect))
         fdcc /= category_num
         return fdcc
-    
+
     @staticmethod
     def IUD(items, **kwargs):
         iuds = 0
@@ -261,7 +260,7 @@ class Metrics(object):
             difference_ratio = torch.div(different_recommendations,k)
             iuds += (1/(number_users-1))*torch.sum(difference_ratio)
         return iuds.item()
-    
+
     # NOT USED ANYMORE - BETTER PERFORMANCE JUST USING MATRIX MULTIPLICATION RATHER THAN FOR LOOP.
 
     # @staticmethod
@@ -272,10 +271,10 @@ class Metrics(object):
 
     #     # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
     #     embeddings_size_squared = k * (k - 1)
-        
+
     #     ilad = torch.sum(distance).item() / embeddings_size_squared
     #     return ilad
-    
+
     # @staticmethod
     # def DILAD(items, model, k, device, test_pos, DILAD_beta):
     #     embeddings = normalize(model.get_embedding()['item'][items])
@@ -293,9 +292,9 @@ class Metrics(object):
     #     embeddings_size_squared = k * (k - 1)
 
     #     dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
-        
+
     #     return dilad
-    
+
     # @staticmethod
     # def ILAD_DILAD(items, model, k, device, DILAD_beta, test_pos=None):
     #     embeddings = normalize(model.get_embedding()['item'][items])
