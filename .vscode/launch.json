@@ -12,15 +12,17 @@
             "console": "integratedTerminal",
             "args": [
                 "--model_path",
-                "./best_models/2_baseline 2 - TaoBao_model_dgrec_lr_0.05_embed_size_32_batch_size_2048_weight_decay_8e-08_layers_1_neg_number_4_seed_2022_k_20_sigma_1.0_gamma_2.0_beta_class_0.9.pt",
+                "./best_models/1_Beauty_model_dgrec_lr_0.05_embed_size_32_batch_size_2048_weight_decay_8e-08_layers_1_neg_number_4_seed_2022_k_20_sigma_1.0_gamma_2.0_beta_class_0.9_kernel_functiongaussian_submodular_function_original.pt",
                 "--metrics",
                 "recall,hit_ratio,coverage,DILAD,ILAD",
+                "--dataset",
+                "Beauty",
                 "--no_checkpoints",
                 "True",
                 "--gpu",
                 "-1",
                 "--DILAD_beta",
-                "0.004"
+                "0.005"
             ]
         }
     ]

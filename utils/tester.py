@@ -23,7 +23,7 @@ class Tester(object):
         self.category_num = dataloader.category_num
         self.runningIUD = "IUD" in args.metrics
 
-    def judge(self, users, items, **kwargs):
+    def judge(self, users, items, k, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
         # for ground truth test
         # items = self.ground_truth_filter(users, items)
@@ -36,7 +36,7 @@ class Tester(object):
 
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
+                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = k, category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
 
         if both_ilad_dilad:
             all_items_embs = self.model.get_embedding()['item'][items]
@@ -47,7 +47,7 @@ class Tester(object):
             beta = self.args.DILAD_beta
             num_users = len(users)
 
-            weights = torch.full((num_users, len(items[0])), beta, device=self.args.device)
+            weights = torch.full((num_users, k), beta, device=self.args.device)
 
             test_sets = [set(self.test_dic[user]) for user in users]
 
@@ -55,7 +55,6 @@ class Tester(object):
                 mask = torch.tensor([1.0 if item.item() in test_set else beta for item in item_row], device=self.args.device)
                 weights[idx] = mask
 
-            k = len(items[0])
             embeddings_size_squared = k * (k - 1)
 
             # TEST - This was for testing whether the weights were correct
