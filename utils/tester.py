@@ -49,10 +49,10 @@ class Tester(object):
 
             weights = torch.full((num_users, len(items[0])), beta, device=self.args.device)
 
-            for idx, user in enumerate(users):
-                test_items = self.test_dic[user]
-                user_items = items[idx]
-                mask = torch.tensor([1 if item in test_items else beta for item in user_items], device=self.args.device)
+            user_test_items_set = [set(self.test_dic[user]) for user in users]
+
+            for idx, (user_items, test_items) in enumerate(zip(items, user_test_items_set)):
+                mask = torch.tensor([1.0 if item in test_items else beta for item in user_items], device=self.args.device)
                 weights[idx] = mask
 
             k = len(items[0])
