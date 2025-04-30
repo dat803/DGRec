@@ -183,9 +183,9 @@ class Metrics(object):
             'coverage': Metrics.coverage,
             'DCC': Metrics.DCC,
             'FDCC': Metrics.FDCC,
-            'ILAD': Metrics.ILAD,
-            'DILAD': Metrics.DILAD,
-            'ILAD_DILAD': Metrics.ILAD_DILAD,
+            #'ILAD': Metrics.ILAD,
+            #'DILAD': Metrics.DILAD,
+            #'ILAD_DILAD': Metrics.ILAD_DILAD,
         }
 
         return metrics_map[metric]
