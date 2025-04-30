@@ -49,14 +49,32 @@ class Tester(object):
 
             weights = torch.full((num_users, len(items[0])), beta, device=self.args.device)
 
-            user_test_items_set = [set(self.test_dic[user]) for user in users]
+            test_sets = [set(self.test_dic[user]) for user in users]
 
-            for idx, (user_items, test_items) in enumerate(zip(items, user_test_items_set)):
-                mask = torch.tensor([1.0 if item in test_items else beta for item in user_items], device=self.args.device)
+            for idx, (item_row, test_set) in enumerate(zip(items, test_sets)):
+                mask = torch.tensor([1.0 if item.item() in test_set else beta for item in item_row], device=self.args.device)
                 weights[idx] = mask
+
+            # for idx, user in enumerate(users):
+            #     test_items = self.test_dic[user]
+            #     user_items = items[idx]
+            #     mask = torch.tensor([1 if item in test_items else beta for item in user_items], device=self.args.device)
+            #     weights[idx] = mask
 
             k = len(items[0])
             embeddings_size_squared = k * (k - 1)
+
+            # TEST
+            weights_2 = torch.full((1, k), beta, device=self.args.device)
+
+            for idx, item in enumerate(items[0]):
+                if item in self.test_dic[users[0]]:
+                    weights_2[0][idx] = 1
+
+            if (not torch.equal(weights_2[0], weights[0])):
+                diff_indices = torch.nonzero(mask, as_tuple=True)
+                print("fejl!")
+            # TEST
 
             ilad_all_users = torch.einsum('uij -> u', all_distances) / embeddings_size_squared
             dilad_all_users = torch.einsum('uij,ui,uj', all_distances, weights, weights) / embeddings_size_squared
