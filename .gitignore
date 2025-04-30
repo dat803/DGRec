@@ -4,3 +4,4 @@ logs/
 best_models/
 .python-version
 results/
+__pycache__/
