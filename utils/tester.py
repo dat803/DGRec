@@ -36,12 +36,12 @@ class Tester(object):
 
             f = Metrics.get_metrics(metric)
             for i in range(len(items)):
-                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta)
+                results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
         
         if both_ilad_dilad:
             for i in range(len(items)):
                 f = Metrics.get_metrics("ILAD_DILAD")
-                ilad, dilad = f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta)
+                ilad, dilad = f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
                 results["ILAD"] += ilad
                 results["DILAD"] += dilad
 
@@ -252,13 +252,13 @@ class Metrics(object):
         return ilad
     
     @staticmethod
-    def DILAD(items, model, k, test_pos, **kwargs):
+    def DILAD(items, model, k, device, test_pos, **kwargs):
         embeddings = normalize(model.get_embedding()['item'][items])
 
         distance = 1 - torch.mm(embeddings, embeddings.t())
 
         beta = kwargs['DILAD_beta']
-        weights = torch.full((1, k), beta, device='cuda')
+        weights = torch.full((1, k), beta, device=device)
 
         for idx, item in enumerate(items):
             if item in test_pos:
@@ -272,13 +272,13 @@ class Metrics(object):
         return dilad
     
     @staticmethod
-    def ILAD_DILAD(items, model, k, test_pos=None, **kwargs):
+    def ILAD_DILAD(items, model, k, device, test_pos=None, **kwargs):
         embeddings = normalize(model.get_embedding()['item'][items])
 
         distance = 1 - torch.mm(embeddings, embeddings.t())
 
         beta = kwargs['DILAD_beta']
-        weights = torch.full((1, k), beta, device='cuda')
+        weights = torch.full((1, k), beta, device=device)
 
         for idx, item in enumerate(items):
             if item in test_pos:
