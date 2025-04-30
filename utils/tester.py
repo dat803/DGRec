@@ -39,11 +39,34 @@ class Tester(object):
                 results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
         
         if both_ilad_dilad:
-            for i in range(len(items)):
-                f = Metrics.get_metrics("ILAD_DILAD")
-                ilad, dilad = f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = kwargs['k'], category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
-                results["ILAD"] += ilad
-                results["DILAD"] += dilad
+            all_items_embs = self.model.get_embedding()['item'][items]
+            all_embeddings = normalize(all_items_embs, dim=2)
+
+            all_distances = 1 - torch.einsum('uie, uje -> uij', all_embeddings, all_embeddings)
+
+            beta = self.args.DILAD_beta
+            num_users = len(users)
+            user_test_items_set = [set(self.test_dic[user]) for user in users] 
+
+            weights = torch.full((num_users, len(items[0])), beta, device=self.args.device)
+
+            for idx, (user, item_list) in enumerate(zip(users, items)):
+                user_mask = torch.tensor([1 if item in user_test_items_set[idx] else beta for item in item_list],
+                                        device=self.args.device)
+                weights[idx] = user_mask
+
+            k = len(items[0])
+            embeddings_size_squared = k * (k - 1)
+
+            ilad_all_users = torch.einsum('uij -> u', all_distances) / embeddings_size_squared
+
+            dilad_all_users = torch.einsum('uij,ui,uj', all_distances, weights, weights) / embeddings_size_squared
+
+            #dilad_all_users = torch.bmm(weights.unsqueeze(1), torch.bmm(all_distances, weights.unsqueeze(2)))  # Shape: (num_users, 1, 1)
+            #dilad_all_users = dilad_all_users.squeeze(2).squeeze(1) / embeddings_size_squared
+
+            results["ILAD"] += torch.sum(ilad_all_users).item()
+            results["DILAD"] += torch.sum(dilad_all_users).item()
 
         return results
 
@@ -239,55 +262,57 @@ class Metrics(object):
             iuds += (1/(number_users-1))*torch.sum(difference_ratio)
         return iuds.item()
     
-    @staticmethod
-    def ILAD(items, model, k, **kwargs):
-        embeddings = normalize(model.get_embedding()['item'][items])
+    # NOT USED ANYMORE - BETTER PERFORMANCE JUST USING MATRIX MULTIPLICATION RATHER THAN FOR LOOP.
 
-        distance = 1 - torch.mm(embeddings, embeddings.t())
+    # @staticmethod
+    # def ILAD(items, model, k, **kwargs):
+    #     embeddings = normalize(model.get_embedding()['item'][items])
 
-        # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
-        embeddings_size_squared = k * (k - 1)
+    #     distance = 1 - torch.mm(embeddings, embeddings.t())
+
+    #     # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
+    #     embeddings_size_squared = k * (k - 1)
         
-        ilad = torch.sum(distance).item() / embeddings_size_squared
-        return ilad
+    #     ilad = torch.sum(distance).item() / embeddings_size_squared
+    #     return ilad
     
-    @staticmethod
-    def DILAD(items, model, k, device, test_pos, **kwargs):
-        embeddings = normalize(model.get_embedding()['item'][items])
+    # @staticmethod
+    # def DILAD(items, model, k, device, test_pos, DILAD_beta):
+    #     embeddings = normalize(model.get_embedding()['item'][items])
 
-        distance = 1 - torch.mm(embeddings, embeddings.t())
+    #     distance = 1 - torch.mm(embeddings, embeddings.t())
 
-        beta = kwargs['DILAD_beta']
-        weights = torch.full((1, k), beta, device=device)
+    #     beta = DILAD_beta
+    #     weights = torch.full((1, k), beta, device=device)
 
-        for idx, item in enumerate(items):
-            if item in test_pos:
-                weights[0][idx] = 1
+    #     for idx, item in enumerate(items):
+    #         if item in test_pos:
+    #             weights[0][idx] = 1
 
-        # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
-        embeddings_size_squared = k * (k - 1)
+    #     # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
+    #     embeddings_size_squared = k * (k - 1)
 
-        dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
+    #     dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
         
-        return dilad
+    #     return dilad
     
-    @staticmethod
-    def ILAD_DILAD(items, model, k, device, test_pos=None, **kwargs):
-        embeddings = normalize(model.get_embedding()['item'][items])
+    # @staticmethod
+    # def ILAD_DILAD(items, model, k, device, DILAD_beta, test_pos=None):
+    #     embeddings = normalize(model.get_embedding()['item'][items])
 
-        distance = 1 - torch.mm(embeddings, embeddings.t())
+    #     distance = 1 - torch.mm(embeddings, embeddings.t())
 
-        beta = kwargs['DILAD_beta']
-        weights = torch.full((1, k), beta, device=device)
+    #     beta = DILAD_beta
+    #     weights = torch.full((1, k), beta, device=device)
 
-        for idx, item in enumerate(items):
-            if item in test_pos:
-                weights[0][idx] = 1
+    #     for idx, item in enumerate(items):
+    #         if item in test_pos:
+    #             weights[0][idx] = 1
 
-        # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
-        embeddings_size_squared = k * (k - 1)
+    #     # We do not remove i'th from the matrix. We assume the distance between itself to be 0.
+    #     embeddings_size_squared = k * (k - 1)
 
-        ilad = torch.sum(distance).item() / embeddings_size_squared
-        dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
+    #     ilad = torch.sum(distance).item() / embeddings_size_squared
+    #     dilad = torch.mm(torch.mm(weights, distance), weights.T).item() / embeddings_size_squared
 
-        return ilad, dilad
+    #     return ilad, dilad

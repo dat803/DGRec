@@ -42,7 +42,7 @@ def parse_args():
                         help = 'alpha for discounted coverage metric')
     parser.add_argument('--FDCC_alpha', default =  0.008, type = float,
                         help = 'alpha for frequency discounted coverage metric')
-    parser.add_argument('--DILAD_beta', default=0.1, type = float),
+    parser.add_argument('--DILAD_beta', default= None, type = float),
     parser.add_argument('--sigma', default = 1.0, type = float,
                         help = 'sigma for gaussian kernel')
     parser.add_argument('--gamma', default = 2.0, type = float,
