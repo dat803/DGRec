@@ -56,7 +56,7 @@ class Tester(object):
                 weights[idx] = mask
 
             k = len(items[0])
-            embeddings_size_squared = k * k
+            embeddings_size_squared = k * (k - 1)
 
             # TEST - This was for testing whether the weights were correct
             # weights_2 = torch.full((1, k), beta, device=self.args.device)
