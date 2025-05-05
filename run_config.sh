@@ -1,9 +1,8 @@
 #!/bin/bash
 
 #SBATCH --job-name=gridsearch
-#SBATCH --chdir=/ceph/project/dat803-25/DGRec/slurm_logs
-#SBATCH --output=gridsearch_%A_%a.out
-#SBATCH --error=gridsearch_%A_%a.err
+#SBATCH --output=/ceph/project/dat803-25/DGRec/slurm_logs/gridsearch_%A_%a.out
+#SBATCH --error=/ceph/project/dat803-25/DGRec/slurm_logs/gridsearch_%A_%a.err
 #SBATCH --mem=24G
 #SBATCH --cpus-per-task=15
 #SBATCH --gres=gpu:1
