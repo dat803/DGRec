@@ -1,0 +1,3890 @@
+[
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 1.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 1.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 0.5,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 32,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.05,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.1,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": false,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "gaussian",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 3.0,
+    "sigma": 2.0,
+    "embed_size": 64,
+    "learning_rate": 0.01,
+    "popularity": true,
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  }
+]
