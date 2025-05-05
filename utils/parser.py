@@ -7,7 +7,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default=None, type = str)
     parser.add_argument('--output', default=None, type = str, help="Path to directory for logs and checkpoint")
-    parser.add_argument('--no_checkpoints', default=False, type = bool, help="Enable checkpoints")
+    parser.add_argument('--no_checkpoints', default=True, type = bool, help="Enable checkpoints")
     parser.add_argument('--model_path', default=None, type = str, help = "specify model_path if you want to test a model")
     parser.add_argument('--dataset', default = 'TaoBao', type = str,
                         help = 'Dataset to use')
@@ -46,7 +46,11 @@ def parse_args():
     parser.add_argument('--sigma', default = 1.0, type = float,
                         help = 'sigma for gaussian kernel')
     parser.add_argument('--gamma', default = 2.0, type = float,
-                        help = 'gamma for gaussian kernel')
+                        help = 'gamma for tanh and radial kernel')
+    parser.add_argument('--coef0', default = 1.0, type = float,
+                        help = 'coef0 for poly and tanh kernel')
+    parser.add_argument('--degree', default = 2.0, type = float,
+                        help = 'degree for poly')
     parser.add_argument('--category_balance', default = True, type = bool,
                         help = 'whether make loss category balance')
     parser.add_argument('--beta_class', default = 0.9, type = float,

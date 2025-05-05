@@ -13,11 +13,13 @@ class DGRecLayer(nn.Module):
         self.k = args.k
         self.sigma = args.sigma
         self.gamma = args.gamma
+        self.coef0 = args.coef0
+        self.degree = args.degree
         self.kernel = args.kernel
         self.submodular_selection_option = args.submodular_selection_option
         self.popularity = args.popularity
 
-    def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2, kappa = 1, delta = 1):
+    def similarity_matrix(self, X, sigma = 1.0, gamma = 2.0, coef0 = 1, degree = 2):
 
         # Gaussian Kernel (original):
         if self.kernel == 'gaussian':
@@ -48,7 +50,7 @@ class DGRecLayer(nn.Module):
     def submodular_selection_feature(self, nodes):
         device = nodes.mailbox['m'].device
         feature = nodes.mailbox['m']
-        sims = self.similarity_matrix(feature, self.sigma, self.gamma)
+        sims = self.similarity_matrix(feature, self.sigma, self.gamma, self.coef0, self.degree)
         batch_num, neighbor_num, feature_size = feature.shape
         nodes_selected = []
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
