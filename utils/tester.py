@@ -45,6 +45,10 @@ class Tester(object):
             all_distances = 1 - torch.einsum('uie, uje -> uij', all_embeddings, all_embeddings)
 
             beta = self.args.DILAD_beta
+
+            if (not beta):
+                raise Exception("Please specify DILAD_beta parameter.")
+
             num_users = len(users)
 
             weights = torch.full((num_users, k), beta, device=self.args.device)
@@ -143,7 +147,6 @@ class Tester(object):
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
                 if self.runningIUD:
-                    print("IUD")
                     iud[k] += Metrics.IUD(recommended_items[:, :k], k=k)
 
 
