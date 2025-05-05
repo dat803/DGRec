@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH --job-name=taobao
-#SBATCH --output=taobao_%A_%a.out
-#SBATCH --error=taobao_%A_%a.err
+#SBATCH --job-name=gridsearch
+#SBATCH --output=./sbatch_logs/gridsearch_%A_%a.out
+#SBATCH --error=./sbatch_logs/gridsearch_%A_%a.err
 #SBATCH --mem=24G
 #SBATCH --cpus-per-task=15
 #SBATCH --gres=gpu:1
