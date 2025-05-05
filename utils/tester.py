@@ -21,7 +21,6 @@ class Tester(object):
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
         self.category_num = dataloader.category_num
-        self.runningIUD = "IUD" in args.metrics
 
     def judge(self, users, items, k, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
@@ -61,26 +60,32 @@ class Tester(object):
 
             embeddings_size_squared = k * (k - 1)
 
-            # TEST - This was for testing whether the weights were correct
-            # weights_2 = torch.full((1, k), beta, device=self.args.device)
-
-            # for idx, item in enumerate(items[0]):
-            #     if item in self.test_dic[users[0]]:
-            #         weights_2[0][idx] = 1
-
-            # if (not torch.equal(weights_2[0], weights[0])):
-            #     diff_indices = torch.nonzero(mask, as_tuple=True)
-            #     print("fejl!")
-            # TEST
-
             ilad_all_users = torch.einsum('uij -> u', all_distances) / embeddings_size_squared
             dilad_all_users = torch.einsum('uij,ui,uj', all_distances, weights, weights) / embeddings_size_squared
 
-            #dilad_all_users = torch.bmm(weights.unsqueeze(1), torch.bmm(all_distances, weights.unsqueeze(2)))  # Shape: (num_users, 1, 1)
-            #dilad_all_users = dilad_all_users.squeeze(2).squeeze(1) / embeddings_size_squared
-
             results["ILAD"] += torch.sum(ilad_all_users).item()
             results["DILAD"] += torch.sum(dilad_all_users).item()
+
+        if "IUD" in self.metrics:
+    
+            num_users = items.shape[0]
+
+            all_items = items.unique()
+            item_to_index = {item.item(): idx for idx, item in enumerate(all_items)}
+            num_items = len(all_items)
+
+            item_matrix = torch.zeros((num_users, num_items), device=items.device)
+            for i in range(num_users):
+                item_indices = [item_to_index[item.item()] for item in items[i]]
+                item_matrix[i, item_indices] = 1
+
+            shared = item_matrix @ item_matrix.T
+
+            difference_ratio = (k - shared) / k
+
+            iuds = difference_ratio.sum() / (num_users - 1)
+
+            results["IUD"] += iuds
 
         return results
 
@@ -109,19 +114,13 @@ class Tester(object):
                 checkpoint_data = pickle.load(f)
             results = checkpoint_data['results']
             count = checkpoint_data['count']
-            if self.runningIUD:
-                iud = checkpoint_data['iud']
         else:
             start_batch = 0
             results = {}
             count = 0
-            if self.runningIUD:
-                iud = {}
 
             for k in self.args.k_list:
                 results[k] = {metric: 0.0 for metric in self.metrics}
-                if self.runningIUD:
-                    iud[k] = 0
 
         h = self.model.get_embedding()
 
@@ -146,16 +145,12 @@ class Tester(object):
                 results_batch = self.judge(users, recommended_items[:, :k], k=k)
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
-                if self.runningIUD:
-                    iud[k] += Metrics.IUD(recommended_items[:, :k], k=k)
-
 
             if not self.args.no_checkpoints:
                 # Save checkpoint
                 checkpoint_data = {
                     'results': results,
                     'count': count,
-                    'iud': iud if self.runningIUD else None
                 }
                 with open(os.path.join(checkpoint_dir, f'{batch_idx}.pkl'), 'wb') as f:
                     pickle.dump(checkpoint_data, f)
@@ -163,15 +158,8 @@ class Tester(object):
         for k in self.args.k_list:
             for metric in self.metrics:
                 results[k][metric] /= count
-            if self.runningIUD:
-                iud[k] /= count
 
         self.show_results(results)
-
-        if self.runningIUD:
-            for k in self.args.k_list:
-                logging.info('for top {}, IUD = {}'.format(k, iud[k]))
-
 
     def show_results(self, results):
         for metric in self.metrics:
@@ -196,9 +184,6 @@ class Metrics(object):
             'coverage': Metrics.coverage,
             'DCC': Metrics.DCC,
             'FDCC': Metrics.FDCC,
-            #'ILAD': Metrics.ILAD,
-            #'DILAD': Metrics.DILAD,
-            #'ILAD_DILAD': Metrics.ILAD_DILAD,
         }
 
         return metrics_map[metric]
@@ -263,17 +248,16 @@ class Metrics(object):
         fdcc /= category_num
         return fdcc
 
-    @staticmethod
-    def IUD(items, **kwargs):
-        iuds = 0
-        k = kwargs['k']
-        number_users = items.shape[0]
-        for i in range(number_users):
-            same_recommendations = torch.isin(items, items[i]).sum(dim=1)
-            different_recommendations = torch.ones(number_users)*k-same_recommendations
-            difference_ratio = torch.div(different_recommendations,k)
-            iuds += (1/(number_users-1))*torch.sum(difference_ratio)
-        return iuds.item()
+    # @staticmethod
+    # def IUD(items, k, **kwargs):
+    #     iuds = 0
+    #     number_users = items.shape[0]
+    #     for i in range(number_users):
+    #         same_recommendations = torch.isin(items, items[i]).sum(dim=1)
+    #         different_recommendations = torch.ones(number_users)*k-same_recommendations
+    #         difference_ratio = torch.div(different_recommendations,k)
+    #         iuds += (1/(number_users-1))*torch.sum(difference_ratio)
+    #     return iuds.item()
 
     # NOT USED ANYMORE - BETTER PERFORMANCE JUST USING MATRIX MULTIPLICATION RATHER THAN FOR LOOP.
 
