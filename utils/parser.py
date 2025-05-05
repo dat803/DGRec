@@ -3,6 +3,9 @@ import argparse
 def str_to_str_list(input_string):
     return [item for item in input_string.split(',')]
 
+def parse_k_list(k_list_str):
+    return [int(x) for x in k_list_str.split(',')]
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default=None, type = str)
@@ -31,7 +34,7 @@ def parse_args():
                         help = 'layer number')
     parser.add_argument('--gpu', default = 0, type = int,
                         help = '-1 for cpu, 0 for gpu:0')
-    parser.add_argument('--k_list', default = [100, 300], type = list,
+    parser.add_argument('--k_list', default = [100, 300], type = parse_k_list,
                         help = 'topk evaluation')
     parser.add_argument('--k', default = 20, type = int,
                         help = 'neighbor number in each GNN aggregation')

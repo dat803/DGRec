@@ -26,3 +26,4 @@ singularity exec \
     --nv /ceph/project/dat803-25/dgl_25.03-py3.sif python "/ceph/project/dat803-25/DGRec/main.py" \
     --metrics recall,hit_ratio,coverage,IUD,DILAD,ILAD,DCC,FDCC \ 
     --DILAD_beta 0.004
+    --k_list 1,5,10,50,100,300
