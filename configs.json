@@ -3,78 +3,6 @@
     "gamma": 2.0,
     "sigma": 1.0,
     "learning_rate": 0.05,
-    "popularity": "inverse",
-    "kernel": "poly",
-    "dataset": "Beauty"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "inverse",
-    "kernel": "poly",
-    "dataset": "TaoBao"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "inverse",
-    "kernel": "tanh",
-    "dataset": "Beauty"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "inverse",
-    "kernel": "tanh",
-    "dataset": "TaoBao"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "enabled",
-    "kernel": "poly",
-    "dataset": "Beauty"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "enabled",
-    "kernel": "poly",
-    "dataset": "TaoBao"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "enabled",
-    "kernel": "tanh",
-    "dataset": "Beauty"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "enabled",
-    "kernel": "tanh",
-    "dataset": "TaoBao"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
-    "popularity": "disabled",
-    "kernel": "poly",
-    "dataset": "Beauty"
-  },
-  {
-    "gamma": 2.0,
-    "sigma": 1.0,
-    "learning_rate": 0.05,
     "popularity": "disabled",
     "kernel": "poly",
     "dataset": "TaoBao"
@@ -85,14 +13,30 @@
     "learning_rate": 0.05,
     "popularity": "disabled",
     "kernel": "tanh",
-    "dataset": "Beauty"
+    "dataset": "TaoBao"
   },
   {
     "gamma": 2.0,
     "sigma": 1.0,
     "learning_rate": 0.05,
     "popularity": "disabled",
-    "kernel": "tanh",
+    "kernel": "linear",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "disabled",
+    "kernel": "radial",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "disabled",
+    "kernel": "gaussian",
     "dataset": "TaoBao"
   }
 ]

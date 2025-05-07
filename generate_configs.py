@@ -4,9 +4,9 @@ import itertools
 gammas = [2.0]
 sigmas = [1.0]
 learning_rates = [0.05]
-popularities = ["inverse", "enabled", "disabled"]
-kernels = ["poly", "tanh"]
-datasets = ["Beauty", "TaoBao"]
+popularities = ["disabled"]
+kernels = ["poly", "tanh", "linear", "radial", "gaussian"]
+datasets = ["TaoBao"]
 
 configs = []
 
