@@ -62,7 +62,7 @@ def parse_args():
                         help = 'kernel function for the similarity matrix: gaussian, poly, tanh')
     parser.add_argument('--submodular_selection_option',default='original',type=str, 
                         help = 'random bullshit we did to the submodular selection function: original, mean, sebastian')
-    parser.add_argument('--popularity', default=str, type=str, help = 'Popularity (enabled, disabled, inverse)')
+    parser.add_argument('--popularity', default="disabled", type=str, help = 'Popularity (enabled, disabled, inverse)')
 
     args = parser.parse_args()
     return args
