@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=seblar21@student.aau.dk
-#SBATCH --array=0-431%8
+#SBATCH --array=0-11%8
 
 # Parse the config using Python
 read gamma sigma learning_rate popularity kernel dataset <<< $(python3 -c "
