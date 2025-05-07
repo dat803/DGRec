@@ -55,8 +55,10 @@ class DGRecLayer(nn.Module):
         nodes_selected = []
         cache = th.zeros((batch_num, 1, neighbor_num), device = device)
 
-        if self.popularity:
+        if self.popularity == "enabled":
             popularity = nodes.mailbox['p']
+        elif self.popularity == "inverse":
+            popularity = 1 / nodes.mailbox['p']
         else:
             popularity = 1
 
