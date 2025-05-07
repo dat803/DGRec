@@ -30,5 +30,69 @@
     "popularity": "inverse",
     "kernel": "tanh",
     "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "enabled",
+    "kernel": "poly",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "enabled",
+    "kernel": "poly",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "enabled",
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "enabled",
+    "kernel": "tanh",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "disabled",
+    "kernel": "poly",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "disabled",
+    "kernel": "poly",
+    "dataset": "TaoBao"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "disabled",
+    "kernel": "tanh",
+    "dataset": "Beauty"
+  },
+  {
+    "gamma": 2.0,
+    "sigma": 1.0,
+    "learning_rate": 0.05,
+    "popularity": "disabled",
+    "kernel": "tanh",
+    "dataset": "TaoBao"
   }
 ]
