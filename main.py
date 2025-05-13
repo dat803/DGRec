@@ -94,10 +94,7 @@ if __name__ == '__main__':
         model_path = args.model_path
 
     logging.info('loading best model for test')
-    if (torch.cuda.is_available()):
-        model.load_state_dict(torch.load(model_path))
-    else:
-        model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(model_path, map_location=args.device))
     # args.model_mf = load_mf_model(args, dataloader)
     tester = Tester(args, model, dataloader)
     logging.info('begin testing')

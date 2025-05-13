@@ -12,6 +12,7 @@ def parse_args():
     parser.add_argument('--output', default=None, type = str, help="Path to directory for logs and checkpoint")
     parser.add_argument('--no_checkpoints', default=True, type = bool, help="Enable checkpoints")
     parser.add_argument('--model_path', default=None, type = str, help = "specify model_path if you want to test a model")
+    parser.add_argument('--embedding_provider', default=None, type = str, help = "specify path to model which will provide embeddings for ILAD and DILAD distance metrics")
     parser.add_argument('--dataset', default = 'TaoBao', type = str,
                         help = 'Dataset to use')
     parser.add_argument('--seed', default = 2022, type = int,

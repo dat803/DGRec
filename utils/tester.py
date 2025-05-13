@@ -9,6 +9,8 @@ from scipy.stats import entropy
 from torch.nn.functional import normalize
 import os
 
+from models.models import DGRec
+
 class Tester(object):
     def __init__(self, args, model, dataloader):
         self.args = args
@@ -17,6 +19,7 @@ class Tester(object):
         self.history_dic = dataloader.historical_dict
         self.history_csr = dataloader.train_csr
         self.dataloader = dataloader.dataloader_test
+        self.real_dataloader = dataloader
         self.test_dic = dataloader.test_dic
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
@@ -27,6 +30,16 @@ class Tester(object):
         # for ground truth test
         # items = self.ground_truth_filter(users, items)
         both_ilad_dilad = "ILAD" in self.metrics and "DILAD" in self.metrics
+        
+        if "ILAD" in self.metrics or "DILAD" in self.metrics:
+            embedding_provider = DGRec(self.args, self.real_dataloader)
+            if not self.args.embedding_provider:
+                print(f'ERROR: ILAD or DILAD selected, but no embedding_provider specified')
+                exit(-1)
+            embedding_provider_path = self.args.embedding_provider
+            logging.info(f'loading embedding provider from {embedding_provider_path}')
+            embedding_provider.load_state_dict(torch.load(embedding_provider_path, map_location=self.args.device))   
+            self.embedding_provider = embedding_provider.to(self.args.device)
 
         category_frequencies = self.category_frequencies(items)
         for metric in self.metrics:
@@ -38,7 +51,7 @@ class Tester(object):
                 results[metric] += f(items[i], test_pos_categories = [self.cate[j] for j in self.test_dic[users[i]]], test_pos = self.test_dic[users[i]], num_test_pos = len(self.test_dic[users[i]]), category_frequencies = category_frequencies[i][1], category_coverage = category_frequencies[i][0], model = self.model, k = k, category_num = self.category_num, DCC_alpha = self.args.DCC_alpha, FDCC_alpha = self.args.FDCC_alpha, DILAD_beta=self.args.DILAD_beta, device=self.args.device)
 
         if both_ilad_dilad:
-            all_items_embs = self.model.get_embedding()['item'][items]
+            all_items_embs = self.embedding_provider.get_embedding()['item'][items]
             all_embeddings = normalize(all_items_embs, dim=2)
 
             all_distances = 1 - torch.einsum('uie, uje -> uij', all_embeddings, all_embeddings)
