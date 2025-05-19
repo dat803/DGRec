@@ -1,0 +1,41 @@
+Wed, 14 May 2025 10:47:35  INFO loadding data
+Wed, 14 May 2025 10:47:35  INFO reading category information
+Wed, 14 May 2025 10:47:41  INFO reading train data
+Wed, 14 May 2025 10:47:45  INFO reading valid data
+Wed, 14 May 2025 10:47:46  INFO reading test data
+Wed, 14 May 2025 10:47:46  INFO get weight for each sample
+Wed, 14 May 2025 10:47:48  INFO Using already trained model
+Wed, 14 May 2025 10:47:48  INFO loading best model for test
+Wed, 14 May 2025 10:47:48  INFO begin testing
+Wed, 14 May 2025 10:54:31  INFO For top10, metric recall = 0.007904577313025208
+Wed, 14 May 2025 10:54:31  INFO For top20, metric recall = 0.01360244236602062
+Wed, 14 May 2025 10:54:31  INFO For top100, metric recall = 0.043213576619726704
+Wed, 14 May 2025 10:54:31  INFO For top300, metric recall = 0.08801339684006539
+Wed, 14 May 2025 10:54:31  INFO For top10, metric hit_ratio = 0.06526448271271768
+Wed, 14 May 2025 10:54:31  INFO For top20, metric hit_ratio = 0.107874577953118
+Wed, 14 May 2025 10:54:31  INFO For top100, metric hit_ratio = 0.28426899664782834
+Wed, 14 May 2025 10:54:31  INFO For top300, metric hit_ratio = 0.45975578763932085
+Wed, 14 May 2025 10:54:31  INFO For top10, metric coverage = 6.617053719458328
+Wed, 14 May 2025 10:54:31  INFO For top20, metric coverage = 11.614669684024543
+Wed, 14 May 2025 10:54:31  INFO For top100, metric coverage = 41.3951205934675
+Wed, 14 May 2025 10:54:31  INFO For top300, metric coverage = 94.77914392555033
+Wed, 14 May 2025 10:54:31  INFO For top10, metric IUD = 0.929722011089325
+Wed, 14 May 2025 10:54:31  INFO For top20, metric IUD = 0.9270403385162354
+Wed, 14 May 2025 10:54:31  INFO For top100, metric IUD = 0.9169501066207886
+Wed, 14 May 2025 10:54:31  INFO For top300, metric IUD = 0.9080860614776611
+Wed, 14 May 2025 10:54:31  INFO For top10, metric DILAD = 5.56884895611948e-05
+Wed, 14 May 2025 10:54:31  INFO For top20, metric DILAD = 4.73304961945651e-05
+Wed, 14 May 2025 10:54:31  INFO For top100, metric DILAD = 3.259064743484365e-05
+Wed, 14 May 2025 10:54:31  INFO For top300, metric DILAD = 2.5364450118821674e-05
+Wed, 14 May 2025 10:54:31  INFO For top10, metric ILAD = 0.4108252583323532
+Wed, 14 May 2025 10:54:31  INFO For top20, metric ILAD = 0.43173047334722886
+Wed, 14 May 2025 10:54:31  INFO For top100, metric ILAD = 0.49543685186459346
+Wed, 14 May 2025 10:54:31  INFO For top300, metric ILAD = 0.5472487275987319
+Wed, 14 May 2025 10:54:31  INFO For top10, metric DCC = 0.000324335071010128
+Wed, 14 May 2025 10:54:31  INFO For top20, metric DCC = 0.0004602220224792324
+Wed, 14 May 2025 10:54:31  INFO For top100, metric DCC = 0.0009081169733451517
+Wed, 14 May 2025 10:54:31  INFO For top300, metric DCC = 0.001320357660294489
+Wed, 14 May 2025 10:54:31  INFO For top10, metric FDCC = 0.0004263777396570941
+Wed, 14 May 2025 10:54:31  INFO For top20, metric FDCC = 0.00058800397571142
+Wed, 14 May 2025 10:54:31  INFO For top100, metric FDCC = 0.0010970016981201316
+Wed, 14 May 2025 10:54:31  INFO For top300, metric FDCC = 0.001541387373137903

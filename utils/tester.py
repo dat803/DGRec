@@ -24,6 +24,7 @@ class Tester(object):
         self.cate = np.array(list(dataloader.category_dic.values()))
         self.metrics = args.metrics
         self.category_num = dataloader.category_num
+        self.device = args.device
 
     def judge(self, users, items, k, **kwargs):
         results = {metric: 0.0 for metric in self.metrics}
@@ -37,7 +38,7 @@ class Tester(object):
                 print(f'ERROR: ILAD or DILAD selected, but no embedding_provider specified')
                 exit(-1)
             embedding_provider_path = self.args.embedding_provider
-            logging.info(f'loading embedding provider from {embedding_provider_path}')
+            #logging.info(f'loading embedding provider from {embedding_provider_path}')
             embedding_provider.load_state_dict(torch.load(embedding_provider_path, map_location=self.args.device))   
             self.embedding_provider = embedding_provider.to(self.args.device)
 
@@ -79,27 +80,6 @@ class Tester(object):
             results["ILAD"] += torch.sum(ilad_all_users).item()
             results["DILAD"] += torch.sum(dilad_all_users).item()
 
-        if "IUD" in self.metrics:
-    
-            num_users = items.shape[0]
-
-            all_items = items.unique()
-            item_to_index = {item.item(): idx for idx, item in enumerate(all_items)}
-            num_items = len(all_items)
-
-            item_matrix = torch.zeros((num_users, num_items), device=items.device)
-            for i in range(num_users):
-                item_indices = [item_to_index[item.item()] for item in items[i]]
-                item_matrix[i, item_indices] = 1
-
-            shared = item_matrix @ item_matrix.T
-
-            difference_ratio = (k - shared) / k
-
-            iuds = difference_ratio.sum() / (num_users - 1)
-
-            results["IUD"] += iuds
-
         return results
 
     def ground_truth_filter(self, users, items):
@@ -136,6 +116,7 @@ class Tester(object):
                 results[k] = {metric: 0.0 for metric in self.metrics}
 
         h = self.model.get_embedding()
+        all_recommended_items = torch.tensor(np.ndarray((0,300)))
 
         for batch_idx, batch in enumerate(tqdm(self.dataloader)):
 
@@ -153,9 +134,10 @@ class Tester(object):
 
             _, recommended_items = torch.topk(scores, k=max(self.args.k_list))
             recommended_items = recommended_items.cpu()
+            all_recommended_items = torch.cat([all_recommended_items, recommended_items])
 
             for k in self.args.k_list:
-                results_batch = self.judge(users, recommended_items[:, :k], k=k)
+                results_batch = self.judge(users, recommended_items[:, :k], k=k, all_recommended_items = all_recommended_items)
                 for metric in self.metrics:
                     results[k][metric] += results_batch[metric]
 
@@ -170,7 +152,11 @@ class Tester(object):
 
         for k in self.args.k_list:
             for metric in self.metrics:
-                results[k][metric] /= count
+                if metric == "IUD":
+                    nice = all_recommended_items[:,:k].to(self.device)
+                    results[k][metric] = Metrics.IUD(nice, k)
+                else:
+                    results[k][metric] /= count
 
         self.show_results(results)
 
@@ -260,3 +246,29 @@ class Metrics(object):
         fdcc += alpha * (len(categories_covered) - len(intersect))
         fdcc /= category_num
         return fdcc
+
+    @staticmethod
+    def IUD(items, k):
+        IUD_batch_size = 10000
+        all_items = items.unique()
+        item_to_index = {item.item(): idx for idx, item in enumerate(all_items)}
+        num_items = len(all_items)
+        num_users = items.shape[0]
+        IUD_batch_num = math.ceil(num_items/IUD_batch_size)
+        iuds = 0
+
+        item_matrix = torch.zeros((num_users, num_items), device=items.device)
+        for i in range(num_users):
+            item_indices = [item_to_index[item.item()] for item in items[i]]
+            item_matrix[i, item_indices] = 1
+
+        for i in range(IUD_batch_num):
+
+            shared = item_matrix[(i*IUD_batch_size):((i+1)*IUD_batch_size),:] @ item_matrix.T
+
+            difference_ratio = (k - shared) / k
+
+            batch_iuds = difference_ratio.sum() / (num_users - 1)
+            iuds+= batch_iuds
+
+        return iuds/num_users
