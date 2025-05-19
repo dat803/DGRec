@@ -104,3 +104,27 @@ class DGRec(BaseGraphModel):
         item_embed = self.layer_attention(item_embed, self.W, self.a)
         h = {'user': user_embed, 'item': item_embed}
         return h
+    
+class Popularity(BaseGraphModel):
+    def __init__(self, args, dataloader):
+        super(Popularity, self).__init__(args, dataloader)
+
+        self.item_popularity = self.compute_item_popularity(self.graph)
+
+    def compute_item_popularity(self, graph):
+        with graph.local_scope():
+            graph.nodes['item'].data['pop'] = torch.zeros(graph.num_nodes('item'), device=graph.device)
+            graph.update_all(fn.copy_u('pop', 'm'), fn.sum('m', 'popularity'), etype='rated by')
+            return graph.nodes['item'].data['popularity']
+
+    def build_layer(self, idx):
+        # No GNN layers needed for popularity model
+        return None
+
+    def get_embedding(self):
+        return {'user': self.user_embedding, 'item': self.item_embedding}
+    
+    def get_score(self, h, users):
+        item_scores = self.item_popularity
+        user_scores = item_scores.unsqueeze(0).repeat(len(users), 1)
+        return user_scores

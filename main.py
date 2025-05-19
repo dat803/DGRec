@@ -94,7 +94,8 @@ if __name__ == '__main__':
         model_path = args.model_path
 
     logging.info('loading best model for test')
-    model.load_state_dict(torch.load(model_path, map_location=args.device))
+    if args.model != "popularity":
+        model.load_state_dict(torch.load(model_path, map_location=args.device))
     # args.model_mf = load_mf_model(args, dataloader)
     tester = Tester(args, model, dataloader)
     logging.info('begin testing')

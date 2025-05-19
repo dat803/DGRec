@@ -5,7 +5,7 @@ import numpy as np
 import random
 from tqdm import tqdm
 import dgl
-from models.models import DGRec
+from models.models import DGRec, Popularity
 import os
 
 def load_mf_model(args, dataloader):
@@ -17,6 +17,8 @@ def load_mf_model(args, dataloader):
 def choose_model(args, dataloader):
     if args.model == 'dgrec':
         return DGRec(args, dataloader)
+    if args.model == 'popularity':
+        return Popularity(args, dataloader)
 
 class NegativeGraph(object):
     def __init__(self, dic):
